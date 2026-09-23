@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flow — Retrospectiva Q1-Q3 2026 (resumen ejecutivo)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1D9E75; --green-light: #e8f7f2; --green-mid: #c2eadc; --green-dark: #157a5a;
+    --bg: #f7f8fa; --white: #ffffff; --border: #e4e7ec;
+    --text: #1a1f2e; --text-secondary: #4b5563; --text-muted: #6b7280;
+    --cyc: #EF9F27; --dispo: #378ADD; --pb: #1D9E75; --oyo: #D4537E; --core: #7F77DD; --host: #888780;
+    --red: #A32D2D; --red-light: #FCEBEB; --amber-light: #FEF3E2; --amber-dark: #92400E;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --radius: 12px; --mono: 'DM Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6; }
+
+  header { background: var(--white); border-bottom: 1px solid var(--border); padding: 36px 24px 24px; }
+  .header-inner { max-width: 860px; margin: 0 auto; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--green-light); color: var(--green-dark);
+  font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; padding: 4px 12px;
+  border-radius: 20px; margin-bottom: 14px; border: 1px solid var(--green-mid); }
+  .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+  h1 { font-size: 23px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; line-height: 1.25; }
+  .subtitle { color: var(--text-secondary); font-size: 13.5px; }
+  .subtitle .sep { color: var(--text-muted); margin: 0 6px; }
+
+  main { max-width: 860px; margin: 0 auto; padding: 32px 24px 80px; }
+  section { margin-bottom: 36px; }
+  h2 { font-size: 15.5px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 4px; }
+  .section-sub { color: var(--text-muted); font-size: 12px; margin: 0 0 14px 0; line-height: 1.5; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .kpi { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px;
+  box-shadow: var(--shadow-sm); border-top: 3px solid var(--border); }
+  .kpi.k-total { border-top-color: var(--text-muted); }
+  .kpi.k-a { border-top-color: var(--green); }
+  .kpi.k-b { border-top-color: var(--red); }
+  .kpi.k-c { border-top-color: var(--cyc); }
+  .kpi-label { font-size: 10.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 5px; }
+  .kpi-value { font-family: var(--mono); font-size: 23px; font-weight: 500; letter-spacing: -0.01em; }
+  .kpi.k-a .kpi-value { color: var(--green-dark); }
+  .kpi.k-b .kpi-value { color: var(--red); }
+  .kpi.k-c .kpi-value { color: var(--amber-dark); }
+  .kpi-sub { font-size: 10.5px; color: var(--text-muted); margin-top: 4px; }
+
+  .semaforo-bar { display: flex; border-radius: 10px; overflow: hidden; height: 30px; margin-top: 14px; box-shadow: var(--shadow-sm); }
+  .sem-seg { display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 10.5px; font-weight: 500; color: #fff; }
+  .sem-a { background: var(--green); } .sem-c { background: var(--cyc); }
+  .sem-legend { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+  .sem-leg-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-secondary); }
+  .sem-leg-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+
+  .kr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .kr-card { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--border); border-radius: var(--radius);
+  padding: 12px 14px; box-shadow: var(--shadow-sm); }
+  .kr-card.st-ok { border-left-color: var(--green); }
+  .kr-card.st-warn { border-left-color: var(--amber-dark); }
+  .kr-card.st-bad { border-left-color: var(--red); }
+  .kr-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .kr-name { font-size: 12.5px; font-weight: 700; }
+  .kr-nums { font-family: var(--mono); font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+  .kr-nums b { color: var(--text); }
+  .kr-note { font-size: 11.5px; color: var(--text-muted); line-height: 1.4; }
+
+  .pill { display: inline-block; font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
+  .pill-green { background: var(--green-light); color: var(--green-dark); }
+  .pill-amber { background: var(--amber-light); color: var(--amber-dark); }
+  .pill-red { background: var(--red-light); color: var(--red); }
+
+  .finding-list { list-style: none; }
+  .finding-item { display: flex; gap: 10px; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 12px 14px; margin-bottom: 8px; box-shadow: var(--shadow-sm); font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; }
+  .finding-item b { color: var(--text); }
+  .finding-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+
+  .bar-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow-sm); }
+  .bar-row { display: grid; grid-template-columns: 190px 1fr 70px; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .bar-card.co .bar-row { grid-template-columns: 190px 1fr 108px; }
+  .bar-row:last-child { margin-bottom: 0; }
+  .bar-label { font-size: 12px; color: var(--text-secondary); }
+  .bar-track { background: var(--bg); border-radius: 5px; height: 16px; overflow: hidden; }
+  .bar-fill { height: 16px; border-radius: 5px; }
+  .bar-value { font-family: var(--mono); font-size: 11px; text-align: right; color: var(--text); }
+
+  .achieve-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .achieve-chip { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; box-shadow: var(--shadow-sm); font-size: 12px; }
+  .achieve-chip b { display: block; font-size: 12.5px; margin-bottom: 2px; }
+  .achieve-chip .pill { margin-left: 6px; }
+
+  .mes-details { border: 1px solid var(--border); border-radius: var(--radius); margin-top: 10px; background: var(--white); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .mes-details summary { list-style: none; cursor: pointer; padding: 11px 16px; font-size: 12.5px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+  .mes-details summary::-webkit-details-marker { display: none; }
+  .mes-details summary .chevron { margin-left: auto; font-size: 12px; color: var(--text-muted); transition: transform .15s; font-family: var(--mono); }
+  .mes-details[open] summary .chevron { transform: rotate(90deg); }
+  .mes-details summary .mes-summary-sub { font-size: 11px; font-weight: 400; color: var(--text-muted); font-family: var(--mono); }
+  .mes-details .mes-details-body { padding: 0 16px 16px; border-top: 1px solid var(--border); padding-top: 12px; overflow-x:auto; }
+
+  .table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .table th { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .03em;
+  text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); white-space:nowrap; }
+  .table td { padding: 8px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .table tr:last-child td { border-bottom: none; }
+  .table td.num, .table th.num { text-align: center; font-family: var(--mono); }
+  .team-row { display: flex; align-items: center; gap: 8px; }
+  .team-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  a.jira-link { color: var(--green-dark); text-decoration: none; border-bottom: 1px dotted var(--green-mid); font-weight: 500; }
+  a.jira-link::after { content: " ↗"; font-size: 10px; opacity: .7; }
+  .jira-list { list-style: none; }
+  .jira-list li { display: flex; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 11.5px; align-items: baseline; }
+  .jira-list li:last-child { border-bottom: none; }
+  .jira-key { font-family: var(--mono); color: var(--text-muted); flex-shrink: 0; min-width: 68px; }
+
+  .reco-list { counter-reset: reco; list-style:none; }
+  .reco-item { display:flex; gap:12px; background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:12px 14px; margin-bottom:8px; box-shadow:var(--shadow-sm); }
+  .reco-num { counter-increment: reco; font-family:var(--mono); font-weight:700; color:var(--green-dark); background:var(--green-light); border-radius:7px; width:22px; height:22px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:11px; }
+  .reco-num::before { content: counter(reco); }
+  .reco-text { font-size:12px; color:var(--text-secondary); line-height:1.5; }
+  .reco-text b { color:var(--text); }
+
+  .footlink { text-align:center; margin-top:24px; }
+  .footlink a { font-size:11.5px; color: var(--text-muted); }
+
+  @media print {
+    details > *:not(summary) { display: block !important; }
+    details summary .chevron { display: none !important; }
+    body { background: white; }
+    .kpi, .bar-card, .mes-details, .reco-item, .kr-card, .finding-item, .achieve-chip { box-shadow: none !important; }
+    section { break-inside: avoid; }
+  }
+  @media (max-width: 640px) {
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .kr-grid, .achieve-grid { grid-template-columns: 1fr; }
+    .bar-row { grid-template-columns: 120px 1fr 50px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <span class="badge">Retrospectiva · Q1-Q3 2026 · Resumen ejecutivo</span>
+    <h1>Flow — Retrospectiva Q1-Q3 2026</h1>
+    <p class="subtitle">161 iniciativas Done (Jira FPR)<span class="sep">·</span>métricas a agosto 2026<span class="sep">·</span>para Planning Q4</p>
+  </div>
+</header>
+
+<main>
+
+  <section id="resumen">
+    <h2>Resumen</h2>
+    <div class="kpi-grid">
+      <div class="kpi k-total">
+        <div class="kpi-label">Iniciativas Done</div>
+        <div class="kpi-value">161</div>
+        <div class="kpi-sub">Q1–Q3 2026 · 24 tracks</div>
+      </div>
+      <div class="kpi k-a">
+        <div class="kpi-label">Lanzamientos comunicados</div>
+        <div class="kpi-value">73</div>
+        <div class="kpi-sub">31 (42%) con métrica de impacto</div>
+      </div>
+      <div class="kpi k-b">
+        <div class="kpi-label">Tomaron más de 1 Q</div>
+        <div class="kpi-value">27</div>
+        <div class="kpi-sub">16.8% de las 161 Done</div>
+      </div>
+      <div class="kpi k-c">
+        <div class="kpi-label">Sin bloque / BAU</div>
+        <div class="kpi-value">21</div>
+        <div class="kpi-sub">13.0% del total</div>
+      </div>
+    </div>
+    <div class="semaforo-bar">
+      <div class="sem-seg sem-c" style="flex:40" title="OKR 1 — Crecimiento">OKR1 · 40</div>
+      <div class="sem-seg sem-a" style="flex:89" title="OKR 2 — Experiencia">OKR2 · 89</div>
+      <div class="sem-seg" style="flex:32;background:var(--host);" title="BAU">BAU · 32</div>
+    </div>
+    <div class="sem-legend">
+      <div class="sem-leg-item"><span class="sem-leg-dot" style="background:var(--cyc)"></span>OKR 1 · Crecimiento — 40 (24.9%)</div>
+      <div class="sem-leg-item"><span class="sem-leg-dot" style="background:var(--green)"></span>OKR 2 · Experiencia — 89 (55.3%)</div>
+      <div class="sem-leg-item"><span class="sem-leg-dot" style="background:var(--host)"></span>BAU — 32 (19.9%)</div>
+    </div>
+  </section>
+
+  <section id="krs">
+    <h2>Estado por KR</h2>
+    <p class="section-sub">Medición más reciente disponible (julio/agosto 2026) contra el objetivo 2026.</p>
+    <div class="kr-grid">
+      <div class="kr-card st-warn">
+        <div class="kr-top"><span class="kr-name">1.1 Parque</span><span class="pill pill-amber">40% del incremento</span></div>
+        <div class="kr-nums">3.31M objetivo · <b>3.25M actual</b></div>
+        <div class="kr-note">22 iniciativas — Deco Autoinstalable, Roku.</div>
+      </div>
+      <div class="kr-card st-ok">
+        <div class="kr-top"><span class="kr-name">1.2 Stickiness</span><span class="pill pill-green">con deco: 80–84%</span></div>
+        <div class="kr-nums">+5%/trim. objetivo · <b>con deco 80–84% / sin deco 59%</b></div>
+        <div class="kr-note">18 iniciativas — sin deco mejoró +11.2pts, sigue ~21pts atrás.</div>
+      </div>
+      <div class="kr-card st-ok">
+        <div class="kr-top"><span class="kr-name">2.1 Detractores NPS</span><span class="pill pill-green">alcanzado</span></div>
+        <div class="kr-nums">≤39% objetivo · <b>39% (jul)</b></div>
+        <div class="kr-note">32 iniciativas — ver hallazgo sobre asignación por segmento abajo.</div>
+      </div>
+      <div class="kr-card st-bad">
+        <div class="kr-top"><span class="kr-name">2.2 T2B CES</span><span class="pill pill-red">+2 de +10pts</span></div>
+        <div class="kr-nums">68.78% objetivo · <b>61% (ago)</b></div>
+        <div class="kr-note">27 iniciativas — Login estancado, ver hallazgo abajo.</div>
+      </div>
+      <div class="kr-card st-warn">
+        <div class="kr-top"><span class="kr-name">2.3 MTTR</span><span class="pill pill-amber">oscilando</span></div>
+        <div class="kr-nums">≤1.50hs techo · <b>1.29hs (ago)</b></div>
+        <div class="kr-note">30 iniciativas — rango del período 1.21–2.88hs, causas variadas.</div>
+      </div>
+      <div class="kr-card st-ok">
+        <div class="kr-top"><span class="kr-name">BAU</span><span class="pill pill-green">en línea</span></div>
+        <div class="kr-nums">20% capacidad objetivo · <b>19.9% actual</b></div>
+        <div class="kr-note">32 iniciativas — sin hallazgos adicionales.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hallazgos">
+    <h2>Hallazgos clave para Q4</h2>
+    <ul class="finding-list">
+      <li class="finding-item"><span class="finding-dot" style="background:var(--amber-dark)"></span><div><b>Los segmentos con más detractores recibieron menos iniciativas:</b> Full IP (49% de detractores) e Híbrido (46%) se llevaron 2 de las 8; Sin deco (39%) se llevó 6.
+        <details class="mes-details" style="margin-top:8px">
+          <summary>Ver la tabla por segmento <span class="chevron">▸</span></summary>
+          <div class="mes-details-body">
+            <table class="table">
+              <thead><tr><th>Producto</th><th>Segmento</th><th class="num">% detractores del segmento</th><th class="num">Iniciativas (de 8)</th></tr></thead>
+              <tbody>
+                <tr><td>Con deco</td><td>Full IP</td><td class="num">49%</td><td class="num">0</td></tr>
+                <tr><td>Con deco</td><td>Híbrido</td><td class="num">46%</td><td class="num">2</td></tr>
+                <tr><td>Sin deco</td><td>mobile / web / STV</td><td class="num">39%</td><td class="num">6</td></tr>
+                <tr><td>Con deco</td><td>Android</td><td class="num">33%</td><td class="num">1</td></tr>
+              </tbody>
+            </table>
+            <p class="section-sub" style="margin-top:10px">Ordenado por tasa de detractores de cada segmento. El % del stock total de detractores no se usa acá porque lo domina el tamaño de cada segmento, no la calidad de la experiencia.</p>
+          </div>
+        </details>
+      </div></li>
+      <li class="finding-item"><span class="finding-dot" style="background:var(--red)"></span><div><b>CES — Login estancado pese a la inversión:</b> se mantiene en 59-63% desde febrero pese a 9 iniciativas del track — no es un problema de volumen de esfuerzo, es que el enfoque no está resolviendo la causa.</div></li>
+      <li class="finding-item"><span class="finding-dot" style="background:var(--amber-dark)"></span><div><b>Smart TV No Android:</b> parque en crecimiento (~1M dispositivos vs ~1.5M Android), con NPS de -25 contra +16 en Android. Sólo 2 iniciativas terminadas la tocaron, ninguna dedicada exclusivamente a esta versión. En CES la dificultad subió de 22.7% (Q1) a 30.6% (julio) y bajó a 16.8% en septiembre.</div></li>
+      <li class="finding-item"><span class="finding-dot" style="background:var(--amber-dark)"></span><div><b>Las dos apps mobile son las únicas donde la dificultad subió:</b> iOS (+1.8pp) y Android mobile (+0.6pp) de Q1 a septiembre, mientras el resto de los dispositivos la bajó entre 3 y 6pp. No es una alarma por magnitud, pero van a contramano de todo el parque. La muestra de iOS es chica (n≈165), la de Android mobile no (n≈931).</div></li>
+      <li class="finding-item"><span class="finding-dot" style="background:var(--amber-dark)"></span><div><b>La prioridad declarada no está discriminando:</b> el 39.1% de las iniciativas es P0 y el 64.6% es P0 o P1. Además, la prioridad no muestra relación con el resultado — las P0 cruzan de quarter en un 14.3% y las P3 en un 20.6%, diferencias dentro del ruido. Es el mecanismo que debería ordenar la asignación de capacidad, y hoy no lo hace: de ahí que el presupuesto explícito por track sea la recomendación principal.
+        <details class="mes-details" style="margin-top:8px">
+          <summary>Ver la distribución de prioridades <span class="chevron">▸</span></summary>
+          <div class="mes-details-body">
+            <table class="table">
+              <thead><tr><th>Prioridad</th><th class="num">Iniciativas</th><th class="num">% del total</th><th class="num">Cruzan de Q</th></tr></thead>
+              <tbody>
+                <tr><td>Highest (P0)</td><td class="num">63</td><td class="num">39.1%</td><td class="num">14.3%</td></tr>
+                <tr><td>High (P1)</td><td class="num">41</td><td class="num">25.5%</td><td class="num">19.5%</td></tr>
+                <tr><td>Medium (P2)</td><td class="num">20</td><td class="num">12.4%</td><td class="num">15.0%</td></tr>
+                <tr><td>Low (P3)</td><td class="num">34</td><td class="num">21.1%</td><td class="num">20.6%</td></tr>
+                <tr><td>Lowest (P4)</td><td class="num">3</td><td class="num">1.9%</td><td class="num">0.0%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </div></li>
+    </ul>
+  </section>
+
+  <section id="esfuerzo">
+    <h2>Esfuerzo por track</h2>
+    <p class="section-sub">Los tracks con más iniciativas — el resto (16 tracks más chicos) en el detalle.</p>
+    <div class="bar-card">
+      <div class="bar-row"><div class="bar-label">Sin bloque / BAU</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--host)"></div></div><div class="bar-value">21 (13.0%)</div></div>
+      <div class="bar-row"><div class="bar-label">Migración a Minerva 11</div><div class="bar-track"><div class="bar-fill" style="width:85.7%;background:var(--core)"></div></div><div class="bar-value">18 (11.2%)</div></div>
+      <div class="bar-row"><div class="bar-label">Mitigación de fallas</div><div class="bar-track"><div class="bar-fill" style="width:66.7%;background:var(--dispo)"></div></div><div class="bar-value">14 (8.7%)</div></div>
+      <div class="bar-row"><div class="bar-label">Nueva Arquitectura y Rediseño</div><div class="bar-track"><div class="bar-fill" style="width:47.6%;background:var(--cyc)"></div></div><div class="bar-value">10 (6.2%)</div></div>
+      <div class="bar-row"><div class="bar-label">Apificación FLOW ↔ Provisión</div><div class="bar-track"><div class="bar-fill" style="width:47.6%;background:var(--core)"></div></div><div class="bar-value">10 (6.2%)</div></div>
+      <div class="bar-row"><div class="bar-label">Experiencia Mundial</div><div class="bar-track"><div class="bar-fill" style="width:47.6%;background:var(--pb)"></div></div><div class="bar-value">10 (6.2%)</div></div>
+      <div class="bar-row"><div class="bar-label">Homologación y Actualización</div><div class="bar-track"><div class="bar-fill" style="width:42.9%;background:var(--dispo)"></div></div><div class="bar-value">9 (5.6%)</div></div>
+      <div class="bar-row"><div class="bar-label">Experiencia Login</div><div class="bar-track"><div class="bar-fill" style="width:42.9%;background:var(--oyo)"></div></div><div class="bar-value">9 (5.6%)</div></div>
+
+      <details class="mes-details">
+        <summary>Ver los 24 tracks completos <span class="chevron">▸</span></summary>
+        <div class="mes-details-body">
+          <table class="table">
+            <thead><tr><th>Track</th><th class="num">Iniciativas</th><th>Equipos principales</th><th>KRs principales</th></tr></thead>
+            <tbody>
+              <tr><td>Sin bloque / BAU</td><td class="num">21 (13.0%)</td><td>Host (8), OyO (7)</td><td>BAU (11), 2.3 (3)</td></tr>
+              <tr><td>Migración a Minerva 11</td><td class="num">18 (11.2%)</td><td>Plataforma Core (10), Dispositivos (7)</td><td>2.3 MTTR (9), 2.1 NPS (5)</td></tr>
+              <tr><td>Mitigación de fallas</td><td class="num">14 (8.7%)</td><td>Dispositivos (6), Playback (5)</td><td>2.3 MTTR (8), 2.1 NPS (5)</td></tr>
+              <tr><td>Nueva Arquitectura y Rediseño</td><td class="num">10 (6.2%)</td><td>CyC (10)</td><td>2.2 CES (9), 1.2 Stickiness (1)</td></tr>
+              <tr><td>Apificación FLOW ↔ Provisión</td><td class="num">10 (6.2%)</td><td>Plataforma Core (8)</td><td>2.3 MTTR (5), BAU (2)</td></tr>
+              <tr><td>Experiencia Mundial</td><td class="num">10 (6.2%)</td><td>Playback (9), CyC (1)</td><td>1.2 Stickiness (9), 2.1 NPS (1)</td></tr>
+              <tr><td>Homologación y Actualización</td><td class="num">9 (5.6%)</td><td>Dispositivos (8), OyO (1)</td><td>BAU (7), 1.1 Parque (2)</td></tr>
+              <tr><td>Experiencia Login</td><td class="num">9 (5.6%)</td><td>OyO (8), Host (1)</td><td>2.1 NPS (3), 2.2 CES (2)</td></tr>
+              <tr><td>Experiencia Gestión de Cuenta</td><td class="num">9 (5.6%)</td><td>OyO (9)</td><td>2.2 CES (7), 2.1 NPS (2)</td></tr>
+              <tr><td>Deco Autoinstalable</td><td class="num">6 (3.7%)</td><td>Dispositivos (4), Plataforma Core (2)</td><td>1.1 Parque (6)</td></tr>
+              <tr><td>Roku</td><td class="num">6 (3.7%)</td><td>Dispositivos (6), OyO (2)</td><td>1.1 Parque (5), 2.2 CES (1)</td></tr>
+              <tr><td>Mejorar Performance en STVs</td><td class="num">6 (3.7%)</td><td>CyC (3), Dispositivos (2)</td><td>2.2 CES (3), 1.1 Parque (1)</td></tr>
+              <tr><td>Observabilidad y salud decos</td><td class="num">5 (3.1%)</td><td>Dispositivos (5)</td><td>2.1 NPS (4), 2.3 MTTR (1)</td></tr>
+              <tr><td>Señales en la nube</td><td class="num">4 (2.5%)</td><td>Playback (3), Plataforma Core (1)</td><td>2.3 MTTR (2), BAU (1)</td></tr>
+              <tr><td>Experiencia Reproducción</td><td class="num">4 (2.5%)</td><td>Playback (4)</td><td>2.2 CES (4)</td></tr>
+              <tr><td>Chromecast</td><td class="num">4 (2.5%)</td><td>Playback (4)</td><td>2.1 NPS (4)</td></tr>
+              <tr><td>Multicast ABR</td><td class="num">3 (1.9%)</td><td>Playback (3)</td><td>2.1 NPS (2), BAU (1)</td></tr>
+              <tr><td>Tendencias</td><td class="num">3 (1.9%)</td><td>Playback (3)</td><td>1.2 Stickiness (3)</td></tr>
+              <tr><td>Recupero de equipos</td><td class="num">3 (1.9%)</td><td>Dispositivos (3), OyO (1)</td><td>BAU (2), 1.1 Parque (1)</td></tr>
+              <tr><td>Robustecer Gestión del Contenido</td><td class="num">2 (1.2%)</td><td>Playback (2)</td><td>BAU (2)</td></tr>
+              <tr><td>Posicionamiento Orgánico</td><td class="num">1 (0.6%)</td><td>Host (1)</td><td>1.1 Parque (1)</td></tr>
+              <tr><td>Flow en Martech</td><td class="num">1 (0.6%)</td><td>OyO (1)</td><td>1.2 Stickiness (1)</td></tr>
+              <tr><td>Experiencia Deportes</td><td class="num">1 (0.6%)</td><td>CyC (1)</td><td>1.2 Stickiness (1)</td></tr>
+              <tr><td>Metadata y Sorprendeme</td><td class="num">1 (0.6%)</td><td>CyC (1)</td><td>1.2 Stickiness (1)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="logros">
+    <h2>Logros y lanzamientos</h2>
+    <p class="section-sub">73 lanzamientos comunicados en el año (31 con métrica) — los headlines más relevantes:</p>
+    <div class="achieve-grid">
+      <div class="achieve-chip"><b>Experiencia Mundial</b><span class="pill pill-green">+2M DAU</span> — NPS +7/+8/+13 (AR/UY/PY).</div>
+      <div class="achieve-chip"><b>Roku</b><span class="pill pill-green">+60k descargas</span> — primeras 2 semanas tras el lanzamiento a la store.</div>
+      <div class="achieve-chip"><b>Experiencia Login</b><span class="pill pill-green">~54% → ~64%</span> — OTP First 100% en Android.</div>
+      <div class="achieve-chip"><b>Mitigación de Fallas</b><span class="pill pill-green">DR validado</span> — durante el Mundial se sirvió la señal de Telefe desde la nube: 3hs continuas sin errores (excluye clientes Linux).</div>
+    </div>
+    <details class="mes-details">
+      <summary>Ver los 10 tracks y el detalle mes a mes de los 73 lanzamientos <span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <table class="table" style="margin-bottom:14px">
+          <thead><tr><th>Track</th><th class="num">Iniciativas</th><th>Resultado clave</th></tr></thead>
+          <tbody>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--pb)"></span>Experiencia Mundial</span></td><td class="num">10</td><td>Plataforma completa para el Mundial 2026: <a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1832" target="_blank" rel="noopener">agenda mundialista</a>, <a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1830" target="_blank" rel="noopener">resúmenes con IA</a>.</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--core)"></span>Migración a Minerva 11</span></td><td class="num">18</td><td>Migración completa a fin de Q2: venta opcional de deco, observabilidad, catálogo (FAUI).</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--dispo)"></span>Deco Autoinstalable</span></td><td class="num">6</td><td>Comercialización iniciada — friends & family en abril.</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--dispo)"></span>Roku</span></td><td class="num">6</td><td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1682" target="_blank" rel="noopener">Lanzamiento a la store</a> en mayo, 35k dispositivos activos.</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--pb)"></span>Tendencias</span></td><td class="num">3</td><td>100% rollout en Web (ene) y Mobile (ago).</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--oyo)"></span>Experiencia Login</span></td><td class="num">9</td><td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1862" target="_blank" rel="noopener">OTP First</a> 100% en Android a fin de agosto.</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--oyo)"></span>Gestión de Cuenta</span></td><td class="num">9</td><td>Operaciones más fluidas, seguridad fortalecida.</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--dispo)"></span>Homologación y Actualización</span></td><td class="num">9</td><td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1504" target="_blank" rel="noopener">Samsung STV en Paraguay</a> (feb).</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--cyc)"></span>Performance en STVs</span></td><td class="num">6</td><td>Optimización de carga/jointime en Smart TV no-Android.</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--dispo)"></span>Mitigación de Fallas</span></td><td class="num">14</td><td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1949" target="_blank" rel="noopener">Chaos Engineering</a>, Load Testing, Disaster Recovery.</td></tr>
+          </tbody>
+        </table>
+        <div class="kpi-grid" style="margin-bottom:12px">
+          <div class="kpi k-total"><div class="kpi-label">Lanzamientos</div><div class="kpi-value">73</div><div class="kpi-sub">enero – septiembre 2026</div></div>
+          <div class="kpi k-a"><div class="kpi-label">Con métrica</div><div class="kpi-value">31</div><div class="kpi-sub">42.5% del total</div></div>
+          <div class="kpi k-b"><div class="kpi-label">Sin métrica</div><div class="kpi-value">42</div><div class="kpi-sub">57.5% — fixes, internals</div></div>
+          <div class="kpi k-c"><div class="kpi-label">Mes con más lanzamientos</div><div class="kpi-value">Jun</div><div class="kpi-sub">23 — pico Mundial</div></div>
+        </div>
+    <details class="mes-details">
+      <summary>Enero 2026 <span class="mes-summary-sub">&nbsp;· 1 lanzamientos · 1 con métrica</span><span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <table class="table">
+          <thead><tr><th>Fecha</th><th>Feature / Producto</th><th>Equipo</th><th class="num">Métrica</th><th>Detalle / Impacto</th><th class="num">Canal</th><th class="num">Link</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">08-ene</td>
+              <td><b>100% Tendencias en Web</b><br><span style="color:var(--text-muted);font-size:11.5px;">Web</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">100% de usuarios Web</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Producto vivo; próxima etapa: comunicación de aviso + encuesta de feedback</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1767883810137909" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+    <details class="mes-details">
+      <summary>Febrero 2026 <span class="mes-summary-sub">&nbsp;· 2 lanzamientos · 0 con métrica</span><span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <table class="table">
+          <thead><tr><th>Fecha</th><th>Feature / Producto</th><th>Equipo</th><th class="num">Métrica</th><th>Detalle / Impacto</th><th class="num">Canal</th><th class="num">Link</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">19-feb</td>
+              <td><b>Fix contenido &quot;la llama&quot; — se ocultó el &quot;me gusta&quot;/postplay por bug</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android, ATV</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Apagado temporal hasta hotfix del lunes</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1771534928079999" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">20-feb</td>
+              <td><b>App Flow certificada en Samsung STV Paraguay</b><br><span style="color:var(--text-muted);font-size:11.5px;">Samsung STV (Paraguay)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Acompaña salida de Flow Full sin deco en PY; próxima parada LG</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1771592508119359?thread_ts=1771592508.119359&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+    <details class="mes-details">
+      <summary>Marzo 2026 <span class="mes-summary-sub">&nbsp;· 6 lanzamientos · 1 con métrica</span><span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <table class="table">
+          <thead><tr><th>Fecha</th><th>Feature / Producto</th><th>Equipo</th><th class="num">Métrica</th><th>Detalle / Impacto</th><th class="num">Canal</th><th class="num">Link</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">04-mar</td>
+              <td><b>Venta opcional de deco (renaming Flow Full sin deco)</b><br><span style="color:var(--text-muted);font-size:11.5px;">Todos</span></td>
+              <td style="font-size:12px;">Comercial</td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Cliente elige contenido primero y luego si suma deco; arrancó con R1</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1772647914066289" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">13-mar</td>
+              <td><b>Trial &quot;Tendencias&quot; en mobile (piloto por IP)</b><br><span style="color:var(--text-muted);font-size:11.5px;">iOS / Android mobile</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Testers exclusivos vía IP habilitada manualmente</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1773423254776799" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">20-mar</td>
+              <td><b>Aumento del límite de dispositivos</b><br><span style="color:var(--text-muted);font-size:11.5px;">Todos</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">40 dispositivos (20 OTT + 20 TV)</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Nuevos clientes ya con el límite; parque existente vía Minerva</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1774038258546149?thread_ts=1774038258.546149&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">26-mar</td>
+              <td><b>Nueva UI del player + botón &quot;Me gusta&quot; en pausa</b><br><span style="color:var(--text-muted);font-size:11.5px;">iOS</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Favoritos en player pendiente de encendido</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1774532467446109" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">30-mar</td>
+              <td><b>Netflix contratable para clientes Flow+</b><br><span style="color:var(--text-muted);font-size:11.5px;">Todos</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Sin comunicación masiva aún (planificada 09/04)</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1774896428381699?thread_ts=1774896428.381699&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">31-mar</td>
+              <td><b>Trial de Tendencias en Android por IP</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Habilitado en producción vía IPs</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1774978436667109" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+    <details class="mes-details">
+      <summary>Abril 2026 <span class="mes-summary-sub">&nbsp;· 4 lanzamientos · 2 con métrica</span><span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <table class="table">
+          <thead><tr><th>Fecha</th><th>Feature / Producto</th><th>Equipo</th><th class="num">Métrica</th><th>Detalle / Impacto</th><th class="num">Canal</th><th class="num">Link</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">15-abr</td>
+              <td><b>Trial Nueva Home — despliegue a empleados</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android TV (deco)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">4.000 empleados (primer batch)</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Deploy sin incidentes; próximo batch a otros 4.000 la semana siguiente</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1776286220706689" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">16-abr</td>
+              <td><b>Primera venta de decos autoinstalables (friends&amp;family)</b><br><span style="color:var(--text-muted);font-size:11.5px;">STB/deco</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Preludio de lanzamiento comercial</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1776351721578379" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">20-abr</td>
+              <td><b>Flow Agent (luego renombrado Obi) — lanzamiento inicial</b><br><span style="color:var(--text-muted);font-size:11.5px;">Teams</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Primera mención del agente conversacional en Teams</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1776715301166449?thread_ts=1776715301.166449&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">23-abr</td>
+              <td><b>Trial app — scroll infinito, back mejorado, coachmarks, fixes UI</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android TV (deco)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">Ampliación a 4k testers ATV + toda la base Personal con Smart TV Android</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Serie de mejoras de navegación/performance previas al lanzamiento masivo</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1776970980045769" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+    <details class="mes-details">
+      <summary>Mayo 2026 <span class="mes-summary-sub">&nbsp;· 17 lanzamientos · 9 con métrica</span><span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <table class="table">
+          <thead><tr><th>Fecha</th><th>Feature / Producto</th><th>Equipo</th><th class="num">Métrica</th><th>Detalle / Impacto</th><th class="num">Canal</th><th class="num">Link</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">04-may</td>
+              <td><b>Flow en Roku — inicio trial de empleados</b><br><span style="color:var(--text-muted);font-size:11.5px;">Roku</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Previo a lanzamiento comercial</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1777918729024689" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">05-may</td>
+              <td><b>Feature &quot;Agenda mundialista&quot; en STB</b><br><span style="color:var(--text-muted);font-size:11.5px;">STB</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Instalación de versión para pruebas</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1777992391168269" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">05-may</td>
+              <td><b>Tendencias en mobile — despliegue progresivo 20%</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android, iOS (Argentina)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">20% del parque Android/iOS</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Autoplay por foco + scroll infinito y sugerencias</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1778007443538609" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">06-may</td>
+              <td><b>Resumen 6 iniciativas de Dispositivos Q2 (Deco autoinstalable, WiFi 5GHz, FlowBox-Z4 rehomologado, Flow LG Paraguay, fix Playback Sagemcom/M11)</b><br><span style="color:var(--text-muted);font-size:11.5px;">STB/deco, LG Smart TV (PY)</span></td>
+              <td style="font-size:12px;">Dispo, OyO, Core, BI, ExO, Observabilidad</td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Cierre de 6 iniciativas del stream Dispositivos en lo que va del Q2</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1778099444047759" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">07-may</td>
+              <td><b>Nueva Home ATV — despliegue 20%</b><br><span style="color:var(--text-muted);font-size:11.5px;">ATV</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">20% del parque</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Búsqueda de smart TVs no-Android para probar performance</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1778158748750389?thread_ts=1778158748.750389&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">07-may</td>
+              <td><b>Nueva Home en Android TV (STB/OTT) v4.100.0 — rollout gradual</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android TV (STB y OTT), AR/UY/PY</span></td>
+              <td style="font-size:12px;">Desarrollo, QA, Producto, Ingesta, Diseño</td>
+              <td style="font-size:12px;">20% (jue) → 50% (lun) → 100% (mié)</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Lanzamiento oficial a clientes tras el trial interno</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1778167631622229" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">08-may</td>
+              <td><b>Flow Agent — acceso a datos de NPS/CES/QoE/llamados</b><br><span style="color:var(--text-muted);font-size:11.5px;">Teams (agente)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Usado para rastrear caída de NPS en Smart TV no Android</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1778268303316299" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">11-may</td>
+              <td><b>Señales en la nube para el Mundial</b><br><span style="color:var(--text-muted);font-size:11.5px;">Infraestructura/Contribución</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">9 señales desplegadas (3 al cliente final + 6 de soporte)</td>
+              <td style="font-size:12px;color:var(--text-secondary);">TNT Novelas, FX y Europa Europa con QoE de señal tradicional; habilita Resúmenes/Tendencias y contingencia</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1778529833006429?thread_ts=1778529833.006429&amp;cid=C04AMT25P9D" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">14-may</td>
+              <td><b>100% Tendencias — disponible para todos (mobile)</b><br><span style="color:var(--text-muted);font-size:11.5px;">Mobile (Android/iOS) + Web</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">100% mobile</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Videos cortos, arranca plan de comunicación push/in-app</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1778783074874889" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">14-may</td>
+              <td><b>Tendencias 100% en mobile (Android/iOS)</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android, iOS</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">100%</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Rollout mobile completado oficialmente</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1778784511738289" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">14-may</td>
+              <td><b>Nueva Home ATV al 100%</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android TV (STB/OTT)</span></td>
+              <td style="font-size:12px;">Catálogo</td>
+              <td style="font-size:12px;">100%</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Sigue trial de STV; se pide sumar testers con Smart TV</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1778790750127459?thread_ts=1778790750.127459&amp;cid=C04AMT25P9D" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">15-may</td>
+              <td><b>Flow Agent — edición de tickets Jira</b><br><span style="color:var(--text-muted);font-size:11.5px;">Teams (agente)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Genera descripción de ticket usando datos del hub</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1778864402514769?thread_ts=1778864402.514769&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">18-may</td>
+              <td><b>QR sin app instalada → muestra planes de contratación</b><br><span style="color:var(--text-muted);font-size:11.5px;">Web / pantallas grandes</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Mejora de guía de contratación para no clientes</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1779111825979729?thread_ts=1779111825.979729&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">20-may</td>
+              <td><b>Reminders — encendido 20%</b><br><span style="color:var(--text-muted);font-size:11.5px;">ATV (Argentina)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">20% de usuarios ATV AR</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Notificación ~15 min antes; bug conocido de deeplink en iOS</td>
+              <td class="num"><span class="pill pill-gray">#producto-flow / #flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1779226009501089?thread_ts=1779226009.501089&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">26-may</td>
+              <td><b>Flow Agent — conoce navegación por plataforma</b><br><span style="color:var(--text-muted);font-size:11.5px;">Teams (agente)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Diferencias de secciones/navegación por dispositivo</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1779825521286509?thread_ts=1779825521.286509&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">27-may</td>
+              <td><b>Flow publicada en store de Roku</b><br><span style="color:var(--text-muted);font-size:11.5px;">Roku</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Comunicación a clientes desde el lunes siguiente</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1779909580440229" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">27-may</td>
+              <td><b>Mundial 2026 en Flow — 104 partidos + DSports/DSports2</b><br><span style="color:var(--text-muted);font-size:11.5px;">Mobile, Web, ATV, STV</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">104 partidos; 2 canales nuevos (109/110)</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Recordatorios, Agenda Mundialista y Resúmenes/Tendencias post partido</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1779908731435349?thread_ts=1779908731.435349&amp;cid=C04AMT25P9D" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+    <details class="mes-details">
+      <summary>Junio 2026 <span class="mes-summary-sub">&nbsp;· 23 lanzamientos · 13 con métrica</span><span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <table class="table">
+          <thead><tr><th>Fecha</th><th>Feature / Producto</th><th>Equipo</th><th class="num">Métrica</th><th>Detalle / Impacto</th><th class="num">Canal</th><th class="num">Link</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">02-jun</td>
+              <td><b>Agenda mundialista — producción 100%</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android Mobile, ATV (ARG)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">104 partidos, 100%</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Banner en Home + onboarding; iOS/Web/STV no Android el 03-04/06</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1780434796000499" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">02-jun</td>
+              <td><b>Flow en Roku — primeros días tras publicación</b><br><span style="color:var(--text-muted);font-size:11.5px;">Roku</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">+5.000 descargas iniciales</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Sin incidentes de logueo; acciones de comunicación conjunta con Roku</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1780414650036339" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">04-jun</td>
+              <td><b>Disaster Recovery Mundial (Telefe en nube)</b><br><span style="color:var(--text-muted);font-size:11.5px;">Infraestructura/CDN</span></td>
+              <td style="font-size:12px;">Core/CDN</td>
+              <td style="font-size:12px;">3 hs continuas sin errores</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Excluye clientes Linux</td>
+              <td class="num"><span class="pill pill-gray">#producto-flow / #flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1780596158308519" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">04-jun</td>
+              <td><b>Pill del Mundial en Tendencias (100%)</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android, iOS</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">100%</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Hashtag #Mundial con canales TVP/ESPN/TyC</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1780599815660499" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">04-jun</td>
+              <td><b>Seguridad: 2FA en vinculación OTT + mail 2FA a CRM</b><br><span style="color:var(--text-muted);font-size:11.5px;">Todos</span></td>
+              <td style="font-size:12px;">OyO</td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Anti-fraude en vinculación Disney+/Netflix/HBO</td>
+              <td class="num"><span class="pill pill-gray">#producto-flow / #flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1780600318346329" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">04-jun</td>
+              <td><b>Apagado Línea+PIN / arranque OTP First 10% Android</b><br><span style="color:var(--text-muted);font-size:11.5px;">Mobile, Web</span></td>
+              <td style="font-size:12px;">IDP</td>
+              <td style="font-size:12px;">10% inicial</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Login únicamente por OTP en Mobile/Web</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1780602615873889?thread_ts=1780602615.873889&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">04-jun</td>
+              <td><b>Agenda mundialista en Web e iOS + banner mobile</b><br><span style="color:var(--text-muted);font-size:11.5px;">Web, iOS, Mobile</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Pendiente STV</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1780603971905909" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">04-jun</td>
+              <td><b>Selector de Cuenta (MVP)</b><br><span style="color:var(--text-muted);font-size:11.5px;">Web, STV</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">~95% de usuarios con 2 domicilios/Flow ID resueltos</td>
+              <td style="font-size:12px;color:var(--text-secondary);"></td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1780604290025379" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">05-jun</td>
+              <td><b>Apagado de M10 On Prem — 100% nuevos clientes en M11</b><br><span style="color:var(--text-muted);font-size:11.5px;">Infraestructura (Pantora/Core)</span></td>
+              <td style="font-size:12px;">Pantora, Core</td>
+              <td style="font-size:12px;">100% de altas nuevas en M11</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Habilita Nueva Home/UI y Roku (desarrolladas sobre M11)</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1780677084437329" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">08-jun</td>
+              <td><b>OTP First 100% Android</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android</span></td>
+              <td style="font-size:12px;">IDP</td>
+              <td style="font-size:12px;">100%</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Completa el rollout iniciado el 04/06</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1780928254056839?thread_ts=1780602615.873889&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">08-jun</td>
+              <td><b>Linux Mundial: Superhero Mixto, Silent Reboot, Metrics fase 1</b><br><span style="color:var(--text-muted);font-size:11.5px;">Linux (STB/SmartTV)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Contenido en vivo/VOD/CatchUp unificado + observabilidad de reinicios/arranque</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1780957596161029" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">09-jun</td>
+              <td><b>Doble factor por mail (Disney+/HBO)</b><br><span style="color:var(--text-muted);font-size:11.5px;">Todos</span></td>
+              <td style="font-size:12px;">OyO</td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Anti-fraude: rotación/compra/vinculación validan por mail de CRM</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1781021433908249" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">09/10-jun</td>
+              <td><b>Full HD (1080p) para el Mundial</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android TV (STB y Smart TV)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">CDN al 65% de capacidad</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Sin afectación de servicio</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1781096757242419" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">10-jun</td>
+              <td><b>Agenda mundialista en Smart TV</b><br><span style="color:var(--text-muted);font-size:11.5px;">Smart TV</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Completa los 5 fronts objetivo (ATV, STV, Web, iOS, Android Mobile)</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1781097866998789" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">10/11-jun</td>
+              <td><b>Resúmenes automáticos de partidos (IA)</b><br><span style="color:var(--text-muted);font-size:11.5px;">Agenda mundialista (todos)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Generados por modelo de IA junto al proveedor</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1781100840557119?thread_ts=1781100840.557119&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">11-jun</td>
+              <td><b>Linux Mundial: próximos partidos en Home, cobertura diaria, resúmenes, banner a Mobile</b><br><span style="color:var(--text-muted);font-size:11.5px;">Linux</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Conecta Linux con Agenda Mundialista mobile</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1781208864194829" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">12-jun</td>
+              <td><b>Tablero del Mundial (consumo Vivo/Tendencias/Resúmenes)</b><br><span style="color:var(--text-muted);font-size:11.5px;">BI / Web (dashboard)</span></td>
+              <td style="font-size:12px;">BI</td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Se sumarían datos de navegación durante el día</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1781267216498859" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">16-jun</td>
+              <td><b>Flow en Roku — primeras 2 semanas</b><br><span style="color:var(--text-muted);font-size:11.5px;">Roku</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">+60k descargas, 35k dispositivos reproduciendo</td>
+              <td style="font-size:12px;color:var(--text-secondary);"></td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1781620852466689" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">17-jun</td>
+              <td><b>Record de tráfico durante el Mundial</b><br><span style="color:var(--text-muted);font-size:11.5px;">CDN / Infraestructura</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">2.4M dispositivos concurrentes; 9 Tbps de tráfico en CDN</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Récord absoluto de tráfico en Flow</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1781698069268309" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">18-jun</td>
+              <td><b>Nueva capa de seguridad en validación de reproducciones</b><br><span style="color:var(--text-muted);font-size:11.5px;">Web, Smart TV, Android app, Android TV OTT</span></td>
+              <td style="font-size:12px;">BE Catálogo, Devops, CDN</td>
+              <td style="font-size:12px;">-40% en intentos de reproducción no válidos</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Reduce riesgos de accesos no autorizados / protección de contenido</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1781815072462199" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">19-jun</td>
+              <td><b>Nuevo tablero: Evolutivo de Dispositivos</b><br><span style="color:var(--text-muted);font-size:11.5px;">BI / Looker</span></td>
+              <td style="font-size:12px;">BI &amp; Analytics</td>
+              <td style="font-size:12px;">Histórico de 13 meses</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Reemplaza tablero anterior; útil para seguir KR 1.1 (Parque)</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1781890931179159" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">24-jun</td>
+              <td><b>Rebranding Flow Agent → Obi + generación de .doc/.xlsx + consultas Jira ampliadas</b><br><span style="color:var(--text-muted);font-size:11.5px;">Teams (agente)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Votación de nombre ganada por &quot;Obi&quot;</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1782322328980099" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">26-jun</td>
+              <td><b>Full HD (1080p) Mundial también en Smart TV no-Android</b><br><span style="color:var(--text-muted);font-size:11.5px;">Smart TV no-Android</span></td>
+              <td style="font-size:12px;">Core, Contribución, CDN, Integraciones</td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Amplía calidad premium</td>
+              <td class="num"><span class="pill pill-gray">#producto-flow / #flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1782494557876389" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+    <details class="mes-details">
+      <summary>Julio 2026 <span class="mes-summary-sub">&nbsp;· 2 lanzamientos · 1 con métrica</span><span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <table class="table">
+          <thead><tr><th>Fecha</th><th>Feature / Producto</th><th>Equipo</th><th class="num">Métrica</th><th>Detalle / Impacto</th><th class="num">Canal</th><th class="num">Link</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">20-jul</td>
+              <td><b>Cierre histórico del Mundial en Flow</b><br><span style="color:var(--text-muted);font-size:11.5px;">Todos</span></td>
+              <td style="font-size:12px;">Soporte, Técnico, Exhibición/Operación</td>
+              <td style="font-size:12px;">+2M clientes diarios activos; picos 9.8 Tbps CDN; NPS +7 AR/+8 UY/+13 PY; +2M interacciones en reminders/agenda</td>
+              <td style="font-size:12px;color:var(--text-secondary);">+300 personas y +150 hs de warroom durante el torneo</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1784563468120189" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">22-23 jul</td>
+              <td><b>Obi — asocia épicas de intermedio al FPR / mueve estados de tickets Jira</b><br><span style="color:var(--text-muted);font-size:11.5px;">Teams (agente)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Nuevas capacidades del agente</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1784747381611209?thread_ts=1784747381.611209&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+    <details class="mes-details">
+      <summary>Agosto 2026 <span class="mes-summary-sub">&nbsp;· 10 lanzamientos · 1 con métrica</span><span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <table class="table">
+          <thead><tr><th>Fecha</th><th>Feature / Producto</th><th>Equipo</th><th class="num">Métrica</th><th>Detalle / Impacto</th><th class="num">Canal</th><th class="num">Link</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">03-ago</td>
+              <td><b>Fix: loop de logo al abrir app en STB Android (Skyworth HP40A, v4.105.7 + ethernet)</b><br><span style="color:var(--text-muted);font-size:11.5px;">STB Android</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Issue identificado, en curso el fix</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1785779544978709?thread_ts=1785779544.978709&amp;cid=C04AMT25P9D" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">07-ago</td>
+              <td><b>Linux: &quot;Mis Contenidos&quot; → &quot;Mi Flow&quot; en menú lateral</b><br><span style="color:var(--text-muted);font-size:11.5px;">Linux</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Alineación de experiencia entre plataformas</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1786113622362019" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">13-ago</td>
+              <td><b>Nueva UI del player + &quot;Me gusta&quot; en pausa (VOD)</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android (v3.165.1)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Ya existía en iOS; nueva pantalla de sintonización, pausa e info</td>
+              <td class="num"><span class="pill pill-gray">#producto-flow / #flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1786642818733849" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">24-ago</td>
+              <td><b>Obi — actualización de link de acceso tras caída</b><br><span style="color:var(--text-muted);font-size:11.5px;">Teams (agente)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Recuperación de disponibilidad</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1787596592952419" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">24-ago</td>
+              <td><b>Reminders — nuevos entry points (Super Hero ATV/STV, DIP Mobile/Web)</b><br><span style="color:var(--text-muted);font-size:11.5px;">ATV, STV, Mobile, Web</span></td>
+              <td style="font-size:12px;">Catálogo</td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Se suman a los ya existentes en DIP TVs y Agenda Mundialista; mejoras de estabilidad/observabilidad</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1787580436146529" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">25-ago</td>
+              <td><b>César — nuevo agente analista de CES</b><br><span style="color:var(--text-muted);font-size:11.5px;">Teams (agente)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">CES por dispositivo/mes/trimestre, verbatims; sin datos NPS ni pre-2026</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1787677204587219?thread_ts=1787677204.587219&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">26-ago</td>
+              <td><b>Nueva experiencia Web de Tendencias</b><br><span style="color:var(--text-muted);font-size:11.5px;">Web</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Reproducción online, feed unificado, filtro por fuente, canal verificado</td>
+              <td class="num"><span class="pill pill-gray">#producto-flow / #flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1787757171830699?thread_ts=1787757171.830699&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">28-ago</td>
+              <td><b>Caji — nuevo agente asistente de trials de dispositivos</b><br><span style="color:var(--text-muted);font-size:11.5px;">Teams (agente)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Identifica dispositivos en trial y valida problemas masivos</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1787931954705189" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">31-ago</td>
+              <td><b>Tablero &quot;Perfiles de Flow&quot; en Looker</b><br><span style="color:var(--text-muted);font-size:11.5px;">BI / Web (dashboard)</span></td>
+              <td style="font-size:12px;">BI &amp; Analytics</td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Segmentación de clientes por perfil de consumo</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1788184200376689?thread_ts=1788184200.376689&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">31-ago</td>
+              <td><b>OTP First Android — retoma al 30%</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android</span></td>
+              <td style="font-size:12px;">IDP</td>
+              <td style="font-size:12px;">30% (rumbo a 70%/100%)</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Plan: 70% el 08/09, 100% una semana después</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1788184838919189" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+    <details class="mes-details">
+      <summary>Septiembre 2026 <span class="mes-summary-sub">&nbsp;· 8 lanzamientos · 3 con métrica</span><span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <table class="table">
+          <thead><tr><th>Fecha</th><th>Feature / Producto</th><th>Equipo</th><th class="num">Métrica</th><th>Detalle / Impacto</th><th class="num">Canal</th><th class="num">Link</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">01-sep</td>
+              <td><b>Sesión Infinita — primer Feature Flag activado</b><br><span style="color:var(--text-muted);font-size:11.5px;">Mobile</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Rumbo al 100% en dispositivos mobile</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1788277760205569?thread_ts=1788277760.205569&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">09-sep</td>
+              <td><b>Nuevo menú avatar y &quot;Mi Cuenta&quot;</b><br><span style="color:var(--text-muted);font-size:11.5px;">Web, STV, ATV OTT/STB (AR)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Accesos a perfiles y gestión de cuenta más visibles; mobile próximamente</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1788976393126269" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">14-sep</td>
+              <td><b>OTP First Android → 70%</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android Mobile</span></td>
+              <td style="font-size:12px;">IDP</td>
+              <td style="font-size:12px;">70%; conversión sube ~2-4 p.p.</td>
+              <td style="font-size:12px;color:var(--text-secondary);"></td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1789393180931249" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">14-sep</td>
+              <td><b>Obi ↔ César integrados (Obi deriva consultas de CES)</b><br><span style="color:var(--text-muted);font-size:11.5px;">Teams (agente)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Respuestas marcadas &quot;Respondido por CESar&quot;</td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1789400006118299?thread_ts=1789400006.118299&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">16-sep (activación)</td>
+              <td><b>Nueva funcionalidad &quot;¿Estás ahí?&quot; (confirmación de presencia LIVE)</b><br><span style="color:var(--text-muted);font-size:11.5px;">STB Android TV (Argentina)</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;">Trigger a 3hs sin interacción, franja 00-08hs</td>
+              <td style="font-size:12px;color:var(--text-secondary);">Mejora la calidad de medición de consumo en pantallas grandes</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1789408757822409" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">17-sep</td>
+              <td><b>Agenda de Fútbol Argentino / Liga Profesional en sección Deportes</b><br><span style="color:var(--text-muted);font-size:11.5px;">ATV, STV, Web, Mobile</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">—</span></td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Disponible para usuarios Pack Fútbol: próximos partidos, resultados en vivo e históricos, resúmenes</td>
+              <td class="num"><span class="pill pill-gray">#producto-flow / #flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1789647301017089?thread_ts=1789647301.017089&amp;cid=C085B8CDB54" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">18-sep</td>
+              <td><b>Evolución de FAUI (gestión de catálogo / Super Hero)</b><br><span style="color:var(--text-muted);font-size:11.5px;">Backoffice (FAUI)</span></td>
+              <td style="font-size:12px;">OpCon</td>
+              <td style="font-size:12px;"><span class="pill pill-gray">sin métrica</span></td>
+              <td style="font-size:12px;color:var(--text-secondary);">Menos tareas duplicadas, más flexibilidad LIVE/VOD, nuevas alertas y validaciones</td>
+              <td class="num"><span class="pill pill-green">#flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C04AMT25P9D/p1789753166723019?thread_ts=1789753166.723019&amp;cid=C04AMT25P9D" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+            <tr>
+              <td class="num" style="font-family:var(--mono);color:var(--text-muted);white-space:nowrap;">18-sep (anuncio, efectivo 21-sep)</td>
+              <td><b>OTP First Android → 100% (anunciado para el 21/09)</b><br><span style="color:var(--text-muted);font-size:11.5px;">Android</span></td>
+              <td style="font-size:12px;">IDP</td>
+              <td style="font-size:12px;">Conversión mejoró de ~54-55% a ~63-64%</td>
+              <td style="font-size:12px;color:var(--text-secondary);"></td>
+              <td class="num"><span class="pill pill-blue">#producto-flow</span></td>
+              <td class="num"><a href="https://telecom.enterprise.slack.com/archives/C085B8CDB54/p1789742733258289" target="_blank" rel="noopener" style="color:var(--green-dark);text-decoration:none;">↗</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+      </div>
+    </details>
+  </section>
+
+  <section id="carryover">
+    <h2>Carry-over por equipo — temas que duraron +1Q</h2>
+    <p class="section-sub">27 de las 161 (16.8%) tardaron más de un quarter en cerrarse.</p>
+    <div class="bar-card co">
+      <div class="bar-row"><div class="bar-label">Host</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--red)"></div></div><div class="bar-value">5/13 · 38.5%</div></div>
+      <div class="bar-row"><div class="bar-label">Oferta y Onboarding</div><div class="bar-track"><div class="bar-fill" style="width:50.4%;background:var(--amber-dark)"></div></div><div class="bar-value">6/31 · 19.4%</div></div>
+      <div class="bar-row"><div class="bar-label">Core</div><div class="bar-track"><div class="bar-fill" style="width:47.3%;background:var(--amber-dark)"></div></div><div class="bar-value">4/22 · 18.2%</div></div>
+      <div class="bar-row"><div class="bar-label">Dispositivos</div><div class="bar-track"><div class="bar-fill" style="width:47.3%;background:var(--amber-dark)"></div></div><div class="bar-value">8/44 · 18.2%</div></div>
+      <div class="bar-row"><div class="bar-label">Catálogo y Contenidos</div><div class="bar-track"><div class="bar-fill" style="width:28.8%;background:var(--green)"></div></div><div class="bar-value">2/18 · 11.1%</div></div>
+      <div class="bar-row"><div class="bar-label">Playback</div><div class="bar-track"><div class="bar-fill" style="width:16.1%;background:var(--green)"></div></div><div class="bar-value">2/32 · 6.2%</div></div>
+
+      <details class="mes-details">
+        <summary>Ver el detalle — las 27 iniciativas, por equipo <span class="chevron">▸</span></summary>
+        <div class="mes-details-body">
+    <details class="mes-details">
+      <summary><span class="team-dot" style="background:var(--host)"></span>Host <span class="mes-summary-sub">&nbsp;· 5 iniciativas</span><span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <ul class="jira-list">
+          <li><span class="jira-key">FPR-1633</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1633" target="_blank" rel="noopener">Mejora de feedback en Smart TV mediante integración de encuestas con QR</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">&#x27;25 Q4 → Q1</span></li>
+          <li><span class="jira-key">FPR-1638</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1638" target="_blank" rel="noopener">Migración de datos al nuevo Remote Config (RC) por streams para Host</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">&#x27;25 Q4 → Q1</span></li>
+          <li><span class="jira-key">FPR-1640</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1640" target="_blank" rel="noopener">Fortalecimiento de calidad y seguridad de código (Unit Tests, SonarQube, Fortify) - WEB - STV - iOS</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">&#x27;25 Q4 → Q1</span></li>
+          <li><span class="jira-key">FPR-1706</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1706" target="_blank" rel="noopener">Actualización de dependencias externas</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+          <li><span class="jira-key">FPR-1816</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1816" target="_blank" rel="noopener">Refactor Splash en Android - ATV</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+        </ul>
+      </div>
+    </details>
+    <details class="mes-details">
+      <summary><span class="team-dot" style="background:var(--oyo)"></span>Oferta y Onboarding <span class="mes-summary-sub">&nbsp;· 6 iniciativas</span><span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <ul class="jira-list">
+          <li><span class="jira-key">FPR-1722</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1722" target="_blank" rel="noopener">OTP first en iOS</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">&#x27;25 Q4 → Q1</span></li>
+          <li><span class="jira-key">FPR-1723</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1723" target="_blank" rel="noopener">[Experiencia de login] - Implementar el nuevo Login de android mobile en UY y PY</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">&#x27;25 Q4 → Q1 → Q2</span></li>
+          <li><span class="jira-key">FPR-1733</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1733" target="_blank" rel="noopener">Migración de geo/country a la nube</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">&#x27;25 Q4 → Q1</span></li>
+          <li><span class="jira-key">FPR-1738</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1738" target="_blank" rel="noopener">Metrics en ProvisionCheck</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">&#x27;25 Q4 → Q1</span></li>
+          <li><span class="jira-key">FPR-1740</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1740" target="_blank" rel="noopener">Nuevo token para FAAS (datapower)</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">&#x27;25 Q4 → Q1</span></li>
+          <li><span class="jira-key">FPR-1941</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1941" target="_blank" rel="noopener">CLONE - [Experiencia gestión de cuenta]  -  Recarga de sesión ante la compra de un Pack (ATV+STVM11)</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+        </ul>
+      </div>
+    </details>
+    <details class="mes-details">
+      <summary><span class="team-dot" style="background:var(--core)"></span>Plataforma Core <span class="mes-summary-sub">&nbsp;· 4 iniciativas</span><span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <ul class="jira-list">
+          <li><span class="jira-key">FPR-1946</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1946" target="_blank" rel="noopener">Cloud Head End - Elemetal AWS - Evolución de señales a la nube</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+          <li><span class="jira-key">FPR-1947</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1947" target="_blank" rel="noopener">[M11] Estabilidad y Robustez para WC</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+          <li><span class="jira-key">FPR-1948</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1948" target="_blank" rel="noopener">M11 - Carga y Load Testing en la Plataforma</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+          <li><span class="jira-key">FPR-1949</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1949" target="_blank" rel="noopener">M11 - Ejercicios de Chaos</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+        </ul>
+      </div>
+    </details>
+    <details class="mes-details">
+      <summary><span class="team-dot" style="background:var(--dispo)"></span>Dispositivos <span class="mes-summary-sub">&nbsp;· 8 iniciativas</span><span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <ul class="jira-list">
+          <li><span class="jira-key">FPR-1654</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1654" target="_blank" rel="noopener">Derivación de no clientes al flujo de alta digital</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">&#x27;25 Q4 → Q1</span></li>
+          <li><span class="jira-key">FPR-1682</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1682" target="_blank" rel="noopener">[ROKU]  -   Aplicación de FLOW en plataforma ROKU certificada para lanzamiento</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+          <li><span class="jira-key">FPR-1686</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1686" target="_blank" rel="noopener">[Observabilidad y salud decos]  -  Priorizar conexiones WiFi más estables en decos FlowBox</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+          <li><span class="jira-key">FPR-1707</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1707" target="_blank" rel="noopener">[ROKU]  -   Alta de Clientes por medio de aplicación de  Roku</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+          <li><span class="jira-key">FPR-1709</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1709" target="_blank" rel="noopener">[Deco Autoinstalable]  -   Disponibilizar circuito de logistica y reacondicionamiento de cajas</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+          <li><span class="jira-key">FPR-1710</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1710" target="_blank" rel="noopener">[Deco Autoinstalable]  -   Disponibilizar nuevo flujo de configuración digital</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+          <li><span class="jira-key">FPR-1809</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1809" target="_blank" rel="noopener">[Migración a Minerva 11]  -   Reducción de Alto Jointime en Sagemcom</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+          <li><span class="jira-key">FPR-1813</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1813" target="_blank" rel="noopener">[Observabilidad y salud decos]  -   Observabilidad de reinicios por threshold de memoria en Linux STB (Acciones Preventivas STB)</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+        </ul>
+      </div>
+    </details>
+    <details class="mes-details">
+      <summary><span class="team-dot" style="background:var(--cyc)"></span>Catálogo y contenido <span class="mes-summary-sub">&nbsp;· 2 iniciativas</span><span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <ul class="jira-list">
+          <li><span class="jira-key">FPR-1575</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1575" target="_blank" rel="noopener">[Experiencia Mundial]  -   Exposición de contenido Live en Superhero de Decos Linux</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+          <li><span class="jira-key">FPR-1824</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1824" target="_blank" rel="noopener">[Nueva Arquitectura y Rediseño Flow]  -  Despliegue productivo (TV)</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+        </ul>
+      </div>
+    </details>
+    <details class="mes-details">
+      <summary><span class="team-dot" style="background:var(--pb)"></span>Playback <span class="mes-summary-sub">&nbsp;· 2 iniciativas</span><span class="chevron">▸</span></summary>
+      <div class="mes-details-body">
+        <ul class="jira-list">
+          <li><span class="jira-key">FPR-1611</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1611" target="_blank" rel="noopener">Evolución de Headend a la nube - estabilización + incremento de señales (condicionado)</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">&#x27;25 Q4 → Q1</span></li>
+          <li><span class="jira-key">FPR-1720</span><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1720" target="_blank" rel="noopener">[Experiencia Mundial]  -  Analisis y desarrollo de iniciativas para experiencia Mundial</a><span style="margin-left:auto;color:var(--text-muted);font-family:var(--mono);font-size:10.5px;white-space:nowrap;">Q1 → Q2</span></li>
+        </ul>
+      </div>
+    </details>
+        </div>
+      </details>
+    </div>
+    <p class="section-sub" style="margin-top:10px">Buffer sugerido para Q4: Host +40-50%, Oferta y Onboarding +25-30%, Core / Dispositivos +20-25%, Catálogo / Playback +10-15% — criterio diferenciado al comprometerse en planning, no un descuento al valor de esas iniciativas.</p>
+  </section>
+
+  <section id="recomendaciones">
+    <h2>Recomendaciones para Q4</h2>
+    <ol class="reco-list">
+      <li class="reco-item" style="border-color:var(--green-mid); border-width:1.5px; background:var(--green-light);"><span class="reco-num" style="background:var(--green);color:#fff;"></span><span class="reco-text"><b>Presupuesto explícito de % de dedicación por track</b> <span class="pill pill-green" style="margin-left:4px">la más importante</span><br>Es la primera vez que se declara. La distribución de Q1-Q3 sirve de línea de base para discutirla — no como objetivo a repetir.</span></li>
+      <li class="reco-item"><span class="reco-num"></span><span class="reco-text"><b>Resultado esperado explícito por iniciativa:</b> toda iniciativa entra a planning declarando qué resultado concreto se espera y para cuándo, no solo la hipótesis.</span></li>
+      <li class="reco-item"><span class="reco-num"></span><span class="reco-text"><b>Medir para decidir, no solo para reportar:</b> hoy no hay impacto medido post-entrega sistemático. La medición del punto anterior se revisa en la planning siguiente para decidir continuar, escalar o discontinuar.</span></li>
+    </ol>
+  </section>
+
+  <p class="footlink">Versión completa con todo el detalle disponible aparte.</p>
+
+</main>
+</body>
+</html>
