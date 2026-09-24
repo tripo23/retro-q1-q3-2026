@@ -122,6 +122,10 @@
   .reco-text { font-size:12px; color:var(--text-secondary); line-height:1.5; }
   .reco-text b { color:var(--text); }
 
+  .kr-card.kr-click { cursor: pointer; transition: border-color .15s, box-shadow .15s; position: relative; }
+  .kr-card.kr-click:hover { border-color: var(--green-mid); box-shadow: 0 2px 8px rgba(29,158,117,.12); }
+  .kr-card.kr-click::after { content: "↓"; position: absolute; right: 12px; bottom: 10px; font-size: 11px; color: var(--text-muted); opacity: .45; }
+  .kr-card.kr-click:hover::after { opacity: 1; color: var(--green-dark); }
   .kr-link { color: inherit; text-decoration: none; border-bottom: 1px dashed var(--border); }
   .kr-link:hover { color: var(--green-dark); border-bottom-color: var(--green); }
   .kr-link::after { content: " ↓"; font-size: 9px; opacity: .5; }
@@ -194,8 +198,8 @@
       </div>
       <div class="kpi k-c">
         <div class="kpi-label">Sin bloque / BAU</div>
-        <div class="kpi-value">21</div>
-        <div class="kpi-sub">13.0% del total</div>
+        <div class="kpi-value">26</div>
+        <div class="kpi-sub">16.1% del total</div>
       </div>
     </div>
     <div class="semaforo-bar">
@@ -214,33 +218,33 @@
     <h2>Estado por KR</h2>
     <p class="section-sub">Medición más reciente disponible (julio/agosto 2026) contra el objetivo 2026.</p>
     <div class="kr-grid">
-      <div class="kr-card st-warn">
-        <div class="kr-top"><span class="kr-name"><a href="javascript:void(0)" onclick="verKR('1.1 Parque')" class="kr-link">1.1 Parque</a></span><span class="pill pill-amber">40% del incremento</span></div>
+      <div class="kr-card st-warn kr-click" onclick="verKR('1.1 Parque')" title="Ver las iniciativas de este KR">
+        <div class="kr-top"><span class="kr-name">1.1 Parque</span><span class="pill pill-amber">40% del incremento</span></div>
         <div class="kr-nums">3.31M objetivo · <b>3.25M actual</b></div>
         <div class="kr-note">22 iniciativas — Deco Autoinstalable, Roku.</div>
       </div>
-      <div class="kr-card st-ok">
-        <div class="kr-top"><span class="kr-name"><a href="javascript:void(0)" onclick="verKR('1.2 Stickiness')" class="kr-link">1.2 Stickiness</a></span><span class="pill pill-green">con deco: 80–84%</span></div>
+      <div class="kr-card st-ok kr-click" onclick="verKR('1.2 Stickiness')" title="Ver las iniciativas de este KR">
+        <div class="kr-top"><span class="kr-name">1.2 Stickiness</span><span class="pill pill-green">con deco: 80–84%</span></div>
         <div class="kr-nums">+5%/trim. objetivo · <b>con deco 80–84% / sin deco 59%</b></div>
         <div class="kr-note">18 iniciativas — sin deco mejoró +11.2pts, sigue ~21pts atrás.</div>
       </div>
-      <div class="kr-card st-ok">
-        <div class="kr-top"><span class="kr-name"><a href="javascript:void(0)" onclick="verKR('2.1 Detractores NPS')" class="kr-link">2.1 Detractores NPS</a></span><span class="pill pill-green">alcanzado</span></div>
+      <div class="kr-card st-ok kr-click" onclick="verKR('2.1 Detractores NPS')" title="Ver las iniciativas de este KR">
+        <div class="kr-top"><span class="kr-name">2.1 Detractores NPS</span><span class="pill pill-green">alcanzado</span></div>
         <div class="kr-nums">≤39% objetivo · <b>39% (jul)</b></div>
         <div class="kr-note">32 iniciativas — ver hallazgo sobre asignación por segmento abajo.</div>
       </div>
-      <div class="kr-card st-bad">
-        <div class="kr-top"><span class="kr-name"><a href="javascript:void(0)" onclick="verKR('2.2 T2B CES')" class="kr-link">2.2 T2B CES</a></span><span class="pill pill-red">+2 de +10pts</span></div>
+      <div class="kr-card st-bad kr-click" onclick="verKR('2.2 T2B CES')" title="Ver las iniciativas de este KR">
+        <div class="kr-top"><span class="kr-name">2.2 T2B CES</span><span class="pill pill-red">+2 de +10pts</span></div>
         <div class="kr-nums">68.78% objetivo · <b>61% (ago)</b></div>
         <div class="kr-note">27 iniciativas — Login estancado, ver hallazgo abajo.</div>
       </div>
-      <div class="kr-card st-warn">
-        <div class="kr-top"><span class="kr-name"><a href="javascript:void(0)" onclick="verKR('2.3 MTTR')" class="kr-link">2.3 MTTR</a></span><span class="pill pill-amber">oscilando</span></div>
+      <div class="kr-card st-warn kr-click" onclick="verKR('2.3 MTTR')" title="Ver las iniciativas de este KR">
+        <div class="kr-top"><span class="kr-name">2.3 MTTR</span><span class="pill pill-amber">oscilando</span></div>
         <div class="kr-nums">≤1.50hs techo · <b>1.29hs (ago)</b></div>
         <div class="kr-note">30 iniciativas — rango del período 1.21–2.88hs, causas variadas.</div>
       </div>
-      <div class="kr-card st-ok">
-        <div class="kr-top"><span class="kr-name"><a href="javascript:void(0)" onclick="verKR('BAU')" class="kr-link">BAU</a></span><span class="pill pill-green">en línea</span></div>
+      <div class="kr-card st-ok kr-click" onclick="verKR('BAU')" title="Ver las iniciativas de este KR">
+        <div class="kr-top"><span class="kr-name">BAU</span><span class="pill pill-green">en línea</span></div>
         <div class="kr-nums">20% capacidad objetivo · <b>19.9% actual</b></div>
         <div class="kr-note">32 iniciativas — sin hallazgos adicionales.</div>
       </div>
@@ -250,24 +254,24 @@
   <section id="hallazgos">
     <h2>Hallazgos clave para Q4</h2>
     <ul class="finding-list">
-      <li class="finding-item"><span class="finding-dot" style="background:var(--amber-dark)"></span><div><b>Los segmentos con más detractores recibieron menos iniciativas:</b> Full IP (49% de detractores) e Híbrido (46%) se llevaron 2 de las 8; Sin deco (39%) se llevó 6.
+      <li class="finding-item"><span class="finding-dot" style="background:var(--amber-dark)"></span><div><b>Los segmentos con más detractores recibieron menos iniciativas:</b> Full IP concentra el 49% de detractores y recibió 1 iniciativa; Híbrido, con 46%, recibió 2. Sin deco, que es el de menor peso después de Android (39%), recibió 6.
         <details class="mes-details" style="margin-top:8px">
           <summary>Ver la tabla por segmento <span class="chevron">▸</span></summary>
           <div class="mes-details-body">
             <table class="table">
-              <thead><tr><th>Producto</th><th>Segmento</th><th class="num">% detractores del segmento</th><th class="num">Iniciativas (de 8)</th></tr></thead>
+              <thead><tr><th>Producto</th><th>Segmento</th><th class="num">% detractores del segmento</th><th class="num">Iniciativas</th></tr></thead>
               <tbody>
-                <tr><td>Con deco</td><td>Full IP</td><td class="num">49%</td><td class="num">0</td></tr>
+                <tr><td>Con deco</td><td>Full IP</td><td class="num">49%</td><td class="num">1</td></tr>
                 <tr><td>Con deco</td><td>Híbrido</td><td class="num">46%</td><td class="num">2</td></tr>
                 <tr><td>Sin deco</td><td>mobile / web / STV</td><td class="num">39%</td><td class="num">6</td></tr>
                 <tr><td>Con deco</td><td>Android</td><td class="num">33%</td><td class="num">1</td></tr>
               </tbody>
             </table>
-            <p class="section-sub" style="margin-top:10px">Ordenado por tasa de detractores de cada segmento. El % del stock total de detractores no se usa acá porque lo domina el tamaño de cada segmento, no la calidad de la experiencia.</p>
+            <p class="section-sub" style="margin-top:10px">Ordenado por tasa de detractores de cada segmento. El % del stock total de detractores no se usa acá porque lo domina el tamaño de cada segmento, no la calidad de la experiencia. La atribución de iniciativa a segmento se hizo a mano y no está registrada en Jira, así que puede haber casos sin identificar — el conteo por segmento es un piso, no un total cerrado.</p>
           </div>
         </details>
       </div></li>
-      <li class="finding-item"><span class="finding-dot" style="background:var(--red)"></span><div><b>CES — Login estancado pese a la inversión:</b> se mantiene en 59-63% desde febrero pese a 9 iniciativas del track — no es un problema de volumen de esfuerzo, es que el enfoque no está resolviendo la causa.</div></li>
+      <li class="finding-item"><span class="finding-dot" style="background:var(--red)"></span><div><b>CES — Login estancado pese a la inversión:</b> se mantiene en 59-63% desde febrero pese a 8 iniciativas del track — no es un problema de volumen de esfuerzo, es que el enfoque no está resolviendo la causa.</div></li>
       <li class="finding-item"><span class="finding-dot" style="background:var(--amber-dark)"></span><div><b>Smart TV No Android:</b> parque en crecimiento (~1M dispositivos vs ~1.5M Android), con NPS de -25 contra +16 en Android. Sólo 2 iniciativas terminadas la tocaron, ninguna dedicada exclusivamente a esta versión. En CES la dificultad subió de 22.7% (Q1) a 30.6% (julio) y bajó a 16.8% en septiembre.</div></li>
       <li class="finding-item"><span class="finding-dot" style="background:var(--amber-dark)"></span><div><b>Las dos apps mobile son las únicas donde la dificultad subió:</b> iOS (+1.8pp) y Android mobile (+0.6pp) de Q1 a septiembre, mientras el resto de los dispositivos la bajó entre 3 y 6pp. No es una alarma por magnitud, pero van a contramano de todo el parque. La muestra de iOS es chica (n≈165), la de Android mobile no (n≈931).</div></li>
       <li class="finding-item"><span class="finding-dot" style="background:var(--amber-dark)"></span><div><b>La prioridad declarada no está discriminando:</b> el 39.1% de las iniciativas es P0 y el 64.6% es P0 o P1. Además, la prioridad no muestra relación con el resultado — las P0 cruzan de quarter en un 14.3% y las P3 en un 20.6%, diferencias dentro del ruido. Es el mecanismo que debería ordenar la asignación de capacidad, y hoy no lo hace: de ahí que el presupuesto explícito por track sea la recomendación principal.
@@ -291,17 +295,17 @@
   </section>
 
   <section id="esfuerzo">
-    <h2>Esfuerzo por track</h2>
-    <p class="section-sub">Los tracks con más iniciativas — el resto (16 tracks más chicos) en el detalle.</p>
+    <h2>Iniciativas por track</h2>
+    <p class="section-sub">Los tracks con más iniciativas — el resto, en el detalle.</p>
     <div class="bar-card">
-      <div class="bar-row"><div class="bar-label">Sin bloque / BAU</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--host)"></div></div><div class="bar-value">21 (13.0%)</div></div>
-      <div class="bar-row"><div class="bar-label">Migración a Minerva 11</div><div class="bar-track"><div class="bar-fill" style="width:85.7%;background:var(--core)"></div></div><div class="bar-value">18 (11.2%)</div></div>
-      <div class="bar-row"><div class="bar-label">Mitigación de fallas</div><div class="bar-track"><div class="bar-fill" style="width:66.7%;background:var(--dispo)"></div></div><div class="bar-value">14 (8.7%)</div></div>
-      <div class="bar-row"><div class="bar-label">Nueva Arquitectura y Rediseño</div><div class="bar-track"><div class="bar-fill" style="width:47.6%;background:var(--cyc)"></div></div><div class="bar-value">10 (6.2%)</div></div>
-      <div class="bar-row"><div class="bar-label">Apificación FLOW ↔ Provisión</div><div class="bar-track"><div class="bar-fill" style="width:47.6%;background:var(--core)"></div></div><div class="bar-value">10 (6.2%)</div></div>
-      <div class="bar-row"><div class="bar-label">Experiencia Mundial</div><div class="bar-track"><div class="bar-fill" style="width:47.6%;background:var(--pb)"></div></div><div class="bar-value">10 (6.2%)</div></div>
-      <div class="bar-row"><div class="bar-label">Homologación y Actualización</div><div class="bar-track"><div class="bar-fill" style="width:42.9%;background:var(--dispo)"></div></div><div class="bar-value">9 (5.6%)</div></div>
-      <div class="bar-row"><div class="bar-label">Experiencia Login</div><div class="bar-track"><div class="bar-fill" style="width:42.9%;background:var(--oyo)"></div></div><div class="bar-value">9 (5.6%)</div></div>
+      <div class="bar-row"><div class="bar-label"><a href="javascript:void(0)" onclick="verTrack('Sin bloque / BAU')" class="kr-link">Sin bloque / BAU</a></div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:var(--host)"></div></div><div class="bar-value">26 (16.1%)</div></div>
+      <div class="bar-row"><div class="bar-label"><a href="javascript:void(0)" onclick="verTrack('Migración a Minerva 11')" class="kr-link">Migración a Minerva 11</a></div><div class="bar-track"><div class="bar-fill" style="width:53.8%;background:var(--core)"></div></div><div class="bar-value">14 (8.7%)</div></div>
+      <div class="bar-row"><div class="bar-label"><a href="javascript:void(0)" onclick="verTrack('Observabilidad y salud decos')" class="kr-link">Observabilidad y salud decos</a></div><div class="bar-track"><div class="bar-fill" style="width:50.0%;background:var(--dispo)"></div></div><div class="bar-value">13 (8.1%)</div></div>
+      <div class="bar-row"><div class="bar-label"><a href="javascript:void(0)" onclick="verTrack('Homologación y Actualización')" class="kr-link">Homologación y Actualización</a></div><div class="bar-track"><div class="bar-fill" style="width:38.5%;background:var(--dispo)"></div></div><div class="bar-value">10 (6.2%)</div></div>
+      <div class="bar-row"><div class="bar-label"><a href="javascript:void(0)" onclick="verTrack('Experiencia Mundial')" class="kr-link">Experiencia Mundial</a></div><div class="bar-track"><div class="bar-fill" style="width:38.5%;background:var(--pb)"></div></div><div class="bar-value">10 (6.2%)</div></div>
+      <div class="bar-row"><div class="bar-label"><a href="javascript:void(0)" onclick="verTrack('Nueva Arquitectura y Rediseño')" class="kr-link">Nueva Arquitectura y Rediseño</a></div><div class="bar-track"><div class="bar-fill" style="width:38.5%;background:var(--cyc)"></div></div><div class="bar-value">10 (6.2%)</div></div>
+      <div class="bar-row"><div class="bar-label"><a href="javascript:void(0)" onclick="verTrack('Apificación FLOW ↔ Provisión')" class="kr-link">Apificación FLOW ↔ Provisión</a></div><div class="bar-track"><div class="bar-fill" style="width:38.5%;background:var(--core)"></div></div><div class="bar-value">10 (6.2%)</div></div>
+      <div class="bar-row"><div class="bar-label"><a href="javascript:void(0)" onclick="verTrack('Mitigación de fallas')" class="kr-link">Mitigación de fallas</a></div><div class="bar-track"><div class="bar-fill" style="width:34.6%;background:var(--pb)"></div></div><div class="bar-value">9 (5.6%)</div></div>
 
       <details class="mes-details">
         <summary>Ver los 24 tracks completos <span class="chevron">▸</span></summary>
@@ -309,34 +313,40 @@
           <table class="table">
             <thead><tr><th>Track</th><th class="num">Iniciativas</th><th>Equipos principales</th><th>KRs principales</th></tr></thead>
             <tbody>
-              <tr><td>Sin bloque / BAU</td><td class="num">21 (13.0%)</td><td>Host (8), OyO (7)</td><td>BAU (11), 2.3 (3)</td></tr>
-              <tr><td>Migración a Minerva 11</td><td class="num">18 (11.2%)</td><td>Plataforma Core (10), Dispositivos (7)</td><td>2.3 MTTR (9), 2.1 NPS (5)</td></tr>
-              <tr><td>Mitigación de fallas</td><td class="num">14 (8.7%)</td><td>Dispositivos (6), Playback (5)</td><td>2.3 MTTR (8), 2.1 NPS (5)</td></tr>
-              <tr><td>Nueva Arquitectura y Rediseño</td><td class="num">10 (6.2%)</td><td>CyC (10)</td><td>2.2 CES (9), 1.2 Stickiness (1)</td></tr>
-              <tr><td>Apificación FLOW ↔ Provisión</td><td class="num">10 (6.2%)</td><td>Plataforma Core (8)</td><td>2.3 MTTR (5), BAU (2)</td></tr>
-              <tr><td>Experiencia Mundial</td><td class="num">10 (6.2%)</td><td>Playback (9), CyC (1)</td><td>1.2 Stickiness (9), 2.1 NPS (1)</td></tr>
-              <tr><td>Homologación y Actualización</td><td class="num">9 (5.6%)</td><td>Dispositivos (8), OyO (1)</td><td>BAU (7), 1.1 Parque (2)</td></tr>
-              <tr><td>Experiencia Login</td><td class="num">9 (5.6%)</td><td>OyO (8), Host (1)</td><td>2.1 NPS (3), 2.2 CES (2)</td></tr>
-              <tr><td>Experiencia Gestión de Cuenta</td><td class="num">9 (5.6%)</td><td>OyO (9)</td><td>2.2 CES (7), 2.1 NPS (2)</td></tr>
-              <tr><td>Deco Autoinstalable</td><td class="num">6 (3.7%)</td><td>Dispositivos (4), Plataforma Core (2)</td><td>1.1 Parque (6)</td></tr>
-              <tr><td>Roku</td><td class="num">6 (3.7%)</td><td>Dispositivos (6), OyO (2)</td><td>1.1 Parque (5), 2.2 CES (1)</td></tr>
-              <tr><td>Mejorar Performance en STVs</td><td class="num">6 (3.7%)</td><td>CyC (3), Dispositivos (2)</td><td>2.2 CES (3), 1.1 Parque (1)</td></tr>
-              <tr><td>Observabilidad y salud decos</td><td class="num">5 (3.1%)</td><td>Dispositivos (5)</td><td>2.1 NPS (4), 2.3 MTTR (1)</td></tr>
-              <tr><td>Señales en la nube</td><td class="num">4 (2.5%)</td><td>Playback (3), Plataforma Core (1)</td><td>2.3 MTTR (2), BAU (1)</td></tr>
-              <tr><td>Experiencia Reproducción</td><td class="num">4 (2.5%)</td><td>Playback (4)</td><td>2.2 CES (4)</td></tr>
-              <tr><td>Chromecast</td><td class="num">4 (2.5%)</td><td>Playback (4)</td><td>2.1 NPS (4)</td></tr>
-              <tr><td>Multicast ABR</td><td class="num">3 (1.9%)</td><td>Playback (3)</td><td>2.1 NPS (2), BAU (1)</td></tr>
-              <tr><td>Tendencias</td><td class="num">3 (1.9%)</td><td>Playback (3)</td><td>1.2 Stickiness (3)</td></tr>
-              <tr><td>Recupero de equipos</td><td class="num">3 (1.9%)</td><td>Dispositivos (3), OyO (1)</td><td>BAU (2), 1.1 Parque (1)</td></tr>
-              <tr><td>Robustecer Gestión del Contenido</td><td class="num">2 (1.2%)</td><td>Playback (2)</td><td>BAU (2)</td></tr>
-              <tr><td>Posicionamiento Orgánico</td><td class="num">1 (0.6%)</td><td>Host (1)</td><td>1.1 Parque (1)</td></tr>
-              <tr><td>Flow en Martech</td><td class="num">1 (0.6%)</td><td>OyO (1)</td><td>1.2 Stickiness (1)</td></tr>
-              <tr><td>Experiencia Deportes</td><td class="num">1 (0.6%)</td><td>CyC (1)</td><td>1.2 Stickiness (1)</td></tr>
-              <tr><td>Metadata y Sorprendeme</td><td class="num">1 (0.6%)</td><td>CyC (1)</td><td>1.2 Stickiness (1)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Sin bloque / BAU')" class="kr-link">Sin bloque / BAU</a></td><td class="num">26 (16.1%)</td><td>Host (10), OyO (10)</td><td>BAU (14), 2.1 NPS (5)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Migración a Minerva 11')" class="kr-link">Migración a Minerva 11</a></td><td class="num">14 (8.7%)</td><td>Core (6), Dispositivos (6)</td><td>2.3 MTTR (9), 2.1 NPS (4)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Observabilidad y salud decos')" class="kr-link">Observabilidad y salud decos</a></td><td class="num">13 (8.1%)</td><td>Dispositivos (13)</td><td>2.1 NPS (9), BAU (3)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Homologación y Actualización')" class="kr-link">Homologación y Actualización</a></td><td class="num">10 (6.2%)</td><td>Dispositivos (8), CyC (1)</td><td>BAU (7), 1.1 Parque (3)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Experiencia Mundial')" class="kr-link">Experiencia Mundial</a></td><td class="num">10 (6.2%)</td><td>Playback (9), CyC (1)</td><td>1.2 Stickiness (9), 2.1 NPS (1)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Nueva Arquitectura y Rediseño')" class="kr-link">Nueva Arquitectura y Rediseño</a></td><td class="num">10 (6.2%)</td><td>CyC (10)</td><td>2.2 CES (9), 1.2 Stickiness (1)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Apificación FLOW ↔ Provisión')" class="kr-link">Apificación FLOW ↔ Provisión</a></td><td class="num">10 (6.2%)</td><td>Core (9), OyO (1)</td><td>2.3 MTTR (6), 1.1 Parque (2)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Mitigación de fallas')" class="kr-link">Mitigación de fallas</a></td><td class="num">9 (5.6%)</td><td>Playback (4), Core (3)</td><td>2.3 MTTR (8), 2.1 NPS (1)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Experiencia Gestión de Cuenta')" class="kr-link">Experiencia Gestión de Cuenta</a></td><td class="num">9 (5.6%)</td><td>OyO (9)</td><td>2.2 CES (7), 2.1 NPS (2)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Experiencia Login')" class="kr-link">Experiencia Login</a></td><td class="num">8 (5.0%)</td><td>OyO (8)</td><td>2.1 NPS (3), 2.2 CES (2)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Roku')" class="kr-link">Roku</a></td><td class="num">6 (3.7%)</td><td>Dispositivos (6)</td><td>1.1 Parque (5), 2.2 CES (1)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Deco Autoinstalable')" class="kr-link">Deco Autoinstalable</a></td><td class="num">6 (3.7%)</td><td>Dispositivos (4), Core (2)</td><td>1.1 Parque (6)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Chromecast')" class="kr-link">Chromecast</a></td><td class="num">5 (3.1%)</td><td>Playback (5)</td><td>2.1 NPS (4), 2.2 CES (1)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Señales en la nube')" class="kr-link">Señales en la nube</a></td><td class="num">4 (2.5%)</td><td>Playback (3), Core (1)</td><td>2.3 MTTR (2), BAU (1)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Mejorar Performance en STVs')" class="kr-link">Mejorar Performance en STVs</a></td><td class="num">4 (2.5%)</td><td>CyC (2), Dispositivos (1)</td><td>2.2 CES (3), 2.1 NPS (1)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Tendencias')" class="kr-link">Tendencias</a></td><td class="num">3 (1.9%)</td><td>Playback (3)</td><td>1.2 Stickiness (3)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Multicast ABR')" class="kr-link">Multicast ABR</a></td><td class="num">3 (1.9%)</td><td>Playback (3)</td><td>2.1 NPS (2), BAU (1)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Experiencia Reproducción')" class="kr-link">Experiencia Reproducción</a></td><td class="num">3 (1.9%)</td><td>Playback (3)</td><td>2.2 CES (3)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Recupero de equipos')" class="kr-link">Recupero de equipos</a></td><td class="num">2 (1.2%)</td><td>Dispositivos (2)</td><td>BAU (2)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Robustecer Gestión del Contenido')" class="kr-link">Robustecer Gestión del Contenido</a></td><td class="num">2 (1.2%)</td><td>Playback (2)</td><td>BAU (2)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Posicionamiento Orgánico')" class="kr-link">Posicionamiento Orgánico</a></td><td class="num">1 (0.6%)</td><td>Host (1)</td><td>1.1 Parque (1)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Flow en Martech')" class="kr-link">Flow en Martech</a></td><td class="num">1 (0.6%)</td><td>OyO (1)</td><td>1.2 Stickiness (1)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Experiencia Deportes')" class="kr-link">Experiencia Deportes</a></td><td class="num">1 (0.6%)</td><td>CyC (1)</td><td>1.2 Stickiness (1)</td></tr>
+          <tr><td><a href="javascript:void(0)" onclick="verTrack('Metadata y Sorprendeme')" class="kr-link">Metadata y Sorprendeme</a></td><td class="num">1 (0.6%)</td><td>CyC (1)</td><td>1.2 Stickiness (1)</td></tr>
             </tbody>
           </table>
         </div>
       </details>
+
+      <div class="insight" style="margin-top:14px">
+        <span class="insight-icon">💡</span>
+        <div><b>Concentración por equipo:</b> Playback concentra 9 de sus iniciativas en un solo track (Experiencia Mundial); Dispositivos las reparte entre Observabilidad y salud decos (13), Homologación y Actualización (8), Roku (6), Migración a Minerva 11 (6), Deco Autoinstalable (4). En el otro extremo, 9 tracks tuvieron 3 iniciativas o menos en los 3 quarters — proyectos chicos y puntuales, no líneas de trabajo sostenidas.</div>
+      </div>
+      <p class="section-sub" style="margin-top:10px">El track sale del campo Bloque de trabajo de Jira. Las 161 iniciativas están clasificadas.</p>
     </div>
   </section>
 
@@ -347,7 +357,7 @@
       <div class="achieve-chip"><b>Experiencia Mundial</b><span class="pill pill-green">+2M DAU</span> — NPS +7/+8/+13 (AR/UY/PY).</div>
       <div class="achieve-chip"><b>Roku</b><span class="pill pill-green">+60k descargas</span> — primeras 2 semanas tras el lanzamiento a la store.</div>
       <div class="achieve-chip"><b>Experiencia Login</b><span class="pill pill-green">~54% → ~64%</span> — OTP First 100% en Android.</div>
-      <div class="achieve-chip"><b>Mitigación de Fallas</b><span class="pill pill-green">DR validado</span> — durante el Mundial se sirvió la señal de Telefe desde la nube: 3hs continuas sin errores (excluye clientes Linux).</div>
+      <div class="achieve-chip"><b>Resiliencia de plataforma</b>Chaos Engineering, Load Testing y plan de contingencia. Se probó en vivo durante el Mundial sirviendo la señal de Telefe desde la nube: 3hs sin errores (excluye clientes Linux).</div>
     </div>
     <details class="mes-details">
       <summary>Ver los 10 tracks y el detalle mes a mes de los 73 lanzamientos <span class="chevron">▸</span></summary>
@@ -356,15 +366,15 @@
           <thead><tr><th>Track</th><th class="num">Iniciativas</th><th>Resultado clave</th></tr></thead>
           <tbody>
             <tr><td><span class="team-row"><span class="team-dot" style="background:var(--pb)"></span>Experiencia Mundial</span></td><td class="num">10</td><td>Plataforma completa para el Mundial 2026: <a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1832" target="_blank" rel="noopener">agenda mundialista</a>, <a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1830" target="_blank" rel="noopener">resúmenes con IA</a>.</td></tr>
-            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--core)"></span>Migración a Minerva 11</span></td><td class="num">18</td><td>Migración completa a fin de Q2: venta opcional de deco, observabilidad, catálogo (FAUI).</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--core)"></span>Migración a Minerva 11</span></td><td class="num">14</td><td>Migración completa a fin de Q2: venta opcional de deco, observabilidad, catálogo (FAUI).</td></tr>
             <tr><td><span class="team-row"><span class="team-dot" style="background:var(--dispo)"></span>Deco Autoinstalable</span></td><td class="num">6</td><td>Comercialización iniciada — friends & family en abril.</td></tr>
             <tr><td><span class="team-row"><span class="team-dot" style="background:var(--dispo)"></span>Roku</span></td><td class="num">6</td><td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1682" target="_blank" rel="noopener">Lanzamiento a la store</a> en mayo, 35k dispositivos activos.</td></tr>
             <tr><td><span class="team-row"><span class="team-dot" style="background:var(--pb)"></span>Tendencias</span></td><td class="num">3</td><td>100% rollout en Web (ene) y Mobile (ago).</td></tr>
-            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--oyo)"></span>Experiencia Login</span></td><td class="num">9</td><td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1862" target="_blank" rel="noopener">OTP First</a> 100% en Android a fin de agosto.</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--oyo)"></span>Experiencia Login</span></td><td class="num">8</td><td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1862" target="_blank" rel="noopener">OTP First</a> 100% en Android a fin de agosto.</td></tr>
             <tr><td><span class="team-row"><span class="team-dot" style="background:var(--oyo)"></span>Gestión de Cuenta</span></td><td class="num">9</td><td>Operaciones más fluidas, seguridad fortalecida.</td></tr>
-            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--dispo)"></span>Homologación y Actualización</span></td><td class="num">9</td><td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1504" target="_blank" rel="noopener">Samsung STV en Paraguay</a> (feb).</td></tr>
-            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--cyc)"></span>Performance en STVs</span></td><td class="num">6</td><td>Optimización de carga/jointime en Smart TV no-Android.</td></tr>
-            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--dispo)"></span>Mitigación de Fallas</span></td><td class="num">14</td><td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1949" target="_blank" rel="noopener">Chaos Engineering</a>, Load Testing, Disaster Recovery.</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--dispo)"></span>Homologación y Actualización</span></td><td class="num">10</td><td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1504" target="_blank" rel="noopener">Samsung STV en Paraguay</a> (feb).</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--cyc)"></span>Performance en STVs</span></td><td class="num">4</td><td>Optimización de carga/jointime en Smart TV no-Android.</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--dispo)"></span>Mitigación de Fallas</span></td><td class="num">9</td><td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1949" target="_blank" rel="noopener">Chaos Engineering</a>, Load Testing, Disaster Recovery.</td></tr>
           </tbody>
         </table>
         <div class="kpi-grid" style="margin-bottom:12px">
@@ -1134,7 +1144,7 @@
         <thead><tr><th>Equipo</th><th class="num">Personas</th><th class="num">Devs</th><th class="num">Iniciativas</th><th>Iniciativas por persona</th><th class="num">Carry-over</th></tr></thead>
         <tbody>
           <tr>
-            <td><span class="team-row"><span class="team-dot" style="background:var(--host)"></span>Host</span></td>
+            <td><span class="team-row"><span class="team-dot" style="background:var(--host)"></span><a href="javascript:void(0)" onclick="verEquipo('Host')" class="kr-link">Host</a></span></td>
             <td class="num">12</td>
             <td class="num">11</td>
             <td class="num">13</td>
@@ -1142,7 +1152,7 @@
             <td class="num">5/13 · 38.5%</td>
           </tr>
           <tr>
-            <td><span class="team-row"><span class="team-dot" style="background:var(--pb)"></span>Playback</span></td>
+            <td><span class="team-row"><span class="team-dot" style="background:var(--pb)"></span><a href="javascript:void(0)" onclick="verEquipo('Playback')" class="kr-link">Playback</a></span></td>
             <td class="num">38</td>
             <td class="num">12</td>
             <td class="num">32</td>
@@ -1150,7 +1160,7 @@
             <td class="num">2/32 · 6.2%</td>
           </tr>
           <tr>
-            <td><span class="team-row"><span class="team-dot" style="background:var(--oyo)"></span>Oferta y Onboarding</span></td>
+            <td><span class="team-row"><span class="team-dot" style="background:var(--oyo)"></span><a href="javascript:void(0)" onclick="verEquipo('Oferta y Onboarding')" class="kr-link">Oferta y Onboarding</a></span></td>
             <td class="num">48</td>
             <td class="num">24</td>
             <td class="num">31</td>
@@ -1158,7 +1168,7 @@
             <td class="num">6/31 · 19.4%</td>
           </tr>
           <tr>
-            <td><span class="team-row"><span class="team-dot" style="background:var(--cyc)"></span>Catálogo y contenido</span></td>
+            <td><span class="team-row"><span class="team-dot" style="background:var(--cyc)"></span><a href="javascript:void(0)" onclick="verEquipo('Catálogo y contenido')" class="kr-link">Catálogo y contenido</a></span></td>
             <td class="num">36</td>
             <td class="num">19</td>
             <td class="num">18</td>
@@ -1166,7 +1176,7 @@
             <td class="num">2/18 · 11.1%</td>
           </tr>
           <tr class="fila-nc">
-            <td><span class="team-row"><span class="team-dot" style="background:var(--dispo);opacity:.5"></span>Dispositivos</span></td>
+            <td><span class="team-row"><span class="team-dot" style="background:var(--dispo);opacity:.5"></span><a href="javascript:void(0)" onclick="verEquipo('Dispositivos')" class="kr-link">Dispositivos</a></span></td>
             <td class="num">15</td>
             <td class="num">3</td>
             <td class="num">44</td>
@@ -1174,7 +1184,7 @@
             <td class="num">8/44 · 18.2%</td>
           </tr>
           <tr class="fila-nc">
-            <td><span class="team-row"><span class="team-dot" style="background:var(--core);opacity:.5"></span>Plataforma Core</span></td>
+            <td><span class="team-row"><span class="team-dot" style="background:var(--core);opacity:.5"></span><a href="javascript:void(0)" onclick="verEquipo('Plataforma Core')" class="kr-link">Plataforma Core</a></span></td>
             <td class="num">17</td>
             <td class="num">1</td>
             <td class="num">22</td>
@@ -1289,8 +1299,8 @@
   <section id="recomendaciones">
     <h2>Recomendaciones para Q4</h2>
     <ol class="reco-list">
-      <li class="reco-item" style="border-color:var(--green-mid); border-width:1.5px; background:var(--green-light);"><span class="reco-num" style="background:var(--green);color:#fff;"></span><span class="reco-text"><b>Presupuesto explícito de % de dedicación por track</b> <span class="pill pill-green" style="margin-left:4px">la más importante</span><br>Es la primera vez que se declara. La distribución de Q1-Q3 sirve de línea de base para discutirla — no como objetivo a repetir.</span></li>
-      <li class="reco-item"><span class="reco-num"></span><span class="reco-text"><b>Pesar las iniciativas:</b> hoy el FPR es la unidad de medida y todas cuentan igual, sin importar el tamaño. Por eso ni la dedicación por track ni la comparación entre equipos se pueden leer con precisión — la sección de equipos muestra ese límite. Cómo pesarlas queda a definir, pero sin eso las recomendaciones que siguen no se pueden medir.</span></li>
+      <li class="reco-item" style="border-color:var(--green-mid); border-width:1.5px; background:var(--green-light);"><span class="reco-num" style="background:var(--green);color:#fff;"></span><span class="reco-text"><b>Definir en la planning de Q4 qué % de la capacidad va a cada track</b> <span class="pill pill-green" style="margin-left:4px">la más importante</span><br>La distribución de Q1-Q3 es el punto de partida, con una salvedad: está medida en cantidad de iniciativas, no en capacidad.</span></li>
+      <li class="reco-item"><span class="reco-num"></span><span class="reco-text"><b>Pesar las iniciativas.</b> Hoy todas cuentan igual sin importar el tamaño, así que no se puede saber si lo entregado se corresponde con la capacidad asignada, ni comparar entre equipos. Cómo pesarlas queda a definir.</span></li>
       <li class="reco-item"><span class="reco-num"></span><span class="reco-text"><b>Resultado esperado explícito por iniciativa:</b> toda iniciativa entra a planning declarando qué resultado concreto se espera y para cuándo, no solo la hipótesis.</span></li>
       <li class="reco-item"><span class="reco-num"></span><span class="reco-text"><b>Medir para decidir, no solo para reportar:</b> hoy no hay impacto medido post-entrega sistemático. La medición del punto anterior se revisa en la planning siguiente para decidir continuar, escalar o discontinuar.</span></li>
     </ol>
@@ -1305,6 +1315,7 @@
       <div class="filtros">
         <select id="f-kr" onchange="filtrar()"><option value="">Todos los KR</option><option value="1.1 Parque">1.1 Parque</option><option value="1.2 Stickiness">1.2 Stickiness</option><option value="2.1 Detractores NPS">2.1 Detractores NPS</option><option value="2.2 T2B CES">2.2 T2B CES</option><option value="2.3 MTTR">2.3 MTTR</option><option value="BAU">BAU</option></select>
         <select id="f-eq" onchange="filtrar()"><option value="">Todos los equipos</option><option value="Dispositivos">Dispositivos</option><option value="Playback">Playback</option><option value="Oferta y Onboarding">Oferta y Onboarding</option><option value="Plataforma Core">Plataforma Core</option><option value="Catálogo y contenido">Catálogo y contenido</option><option value="Host">Host</option><option value="UX Team">UX Team</option></select>
+        <select id="f-track" onchange="filtrar()"><option value="">Todos los tracks</option><option value="Sin bloque / BAU">Sin bloque / BAU</option><option value="Migración a Minerva 11">Migración a Minerva 11</option><option value="Observabilidad y salud decos">Observabilidad y salud decos</option><option value="Homologación y Actualización">Homologación y Actualización</option><option value="Experiencia Mundial">Experiencia Mundial</option><option value="Nueva Arquitectura y Rediseño">Nueva Arquitectura y Rediseño</option><option value="Apificación FLOW ↔ Provisión">Apificación FLOW ↔ Provisión</option><option value="Mitigación de fallas">Mitigación de fallas</option><option value="Experiencia Gestión de Cuenta">Experiencia Gestión de Cuenta</option><option value="Experiencia Login">Experiencia Login</option><option value="Roku">Roku</option><option value="Deco Autoinstalable">Deco Autoinstalable</option><option value="Chromecast">Chromecast</option><option value="Señales en la nube">Señales en la nube</option><option value="Mejorar Performance en STVs">Mejorar Performance en STVs</option><option value="Tendencias">Tendencias</option><option value="Multicast ABR">Multicast ABR</option><option value="Experiencia Reproducción">Experiencia Reproducción</option><option value="Recupero de equipos">Recupero de equipos</option><option value="Robustecer Gestión del Contenido">Robustecer Gestión del Contenido</option><option value="Posicionamiento Orgánico">Posicionamiento Orgánico</option><option value="Flow en Martech">Flow en Martech</option><option value="Experiencia Deportes">Experiencia Deportes</option><option value="Metadata y Sorprendeme">Metadata y Sorprendeme</option></select>
         <select id="f-q" onchange="filtrar()"><option value="">Todos los quarters</option><option value="2026-Q1">2026-Q1</option><option value="2026-Q2">2026-Q2</option><option value="2026-Q3">2026-Q3</option></select>
         <select id="f-carry" onchange="filtrar()"><option value="">Todas</option><option value="si">Solo carry-over</option><option value="no">Solo cerradas en 1 Q</option></select>
         <button class="btn-reset" onclick="limpiar()">Limpiar</button>
@@ -1312,1292 +1323,1453 @@
       </div>
       <div style="overflow-x:auto">
         <table class="table" id="tabla-ini">
-          <thead><tr><th>Key</th><th>Iniciativa</th><th>Equipo</th><th class="num">Quarters</th><th class="num">KR</th><th class="num">Prio</th></tr></thead>
+          <thead><tr><th>Key</th><th>Iniciativa</th><th>Equipo</th><th>Track</th><th class="num">Quarters</th><th class="num">KR</th><th class="num">Prio</th></tr></thead>
           <tbody>
-            <tr data-kr="1.1 Parque" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no" data-track="Homologación y Actualización">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1504" target="_blank" rel="noopener">FPR-1504</a></td>
               <td>Homologar la aplicación de STV en Samsung para Paraguay</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Homologación y Actualización</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2025-Q4 2026-Q1" data-carry="si">
+            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2025-Q4 2026-Q1" data-carry="si" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1654" target="_blank" rel="noopener">FPR-1654</a></td>
               <td>Derivación de no clientes al flujo de alta digital</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">&#x27;25 Q4 → Q1</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Roku">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1682" target="_blank" rel="noopener">FPR-1682</a></td>
               <td>[ROKU]  -   Aplicación de FLOW en plataforma ROKU certificada para lanzamiento</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Roku</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Roku">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1707" target="_blank" rel="noopener">FPR-1707</a></td>
               <td>[ROKU]  -   Alta de Clientes por medio de aplicación de  Roku</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Roku</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no" data-track="Roku">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1708" target="_blank" rel="noopener">FPR-1708</a></td>
               <td>[ROKU] Adaptar flujo para incluir clientes M10</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Roku</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Deco Autoinstalable">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1709" target="_blank" rel="noopener">FPR-1709</a></td>
               <td>[Deco Autoinstalable]  -   Disponibilizar circuito de logistica y reacondicionamiento de cajas</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Deco Autoinstalable</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Deco Autoinstalable">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1710" target="_blank" rel="noopener">FPR-1710</a></td>
               <td>[Deco Autoinstalable]  -   Disponibilizar nuevo flujo de configuración digital</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Deco Autoinstalable</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no" data-track="Deco Autoinstalable">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1713" target="_blank" rel="noopener">FPR-1713</a></td>
               <td>[Autoinstalables] Disponibilizar asistente de instalación</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Deco Autoinstalable</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no" data-track="Homologación y Actualización">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1773" target="_blank" rel="noopener">FPR-1773</a></td>
               <td>Homologar modelos FlowBox-Z4 con configuraciones de memorias</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Homologación y Actualización</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Roku">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1797" target="_blank" rel="noopener">FPR-1797</a></td>
               <td>[ROKU]  -   Go Live App para clientes finales</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Roku</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Deco Autoinstalable">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1857" target="_blank" rel="noopener">FPR-1857</a></td>
               <td>[Deco Autoinstalable]  -  Validación Prueba Friendly</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Deco Autoinstalable</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Homologación y Actualización">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1922" target="_blank" rel="noopener">FPR-1922</a></td>
               <td>[Homologaciones dispositivos] - Homologación cambio memoria eMMC en FlowBox Z4</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Homologación y Actualización</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Roku">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1945" target="_blank" rel="noopener">FPR-1945</a></td>
               <td>ROKU - Desarrollo App e Integración con M11 - Despliegue en Prod</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Roku</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Host" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Host" data-q="2026-Q2" data-carry="no" data-track="Posicionamiento Orgánico">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1919" target="_blank" rel="noopener">FPR-1919</a></td>
               <td>[Posicionamiento Orgánico Plataforma Flow]  -  Mejoras en el posicionamiento de Flow en Google</td>
               <td>Host</td>
+              <td style="font-size:11px">Posicionamiento Orgánico</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Oferta y Onboarding" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Oferta y Onboarding" data-q="2026-Q1" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1743" target="_blank" rel="noopener">FPR-1743</a></td>
               <td>Relevamiento y migración a los nuevos RC de Web y STV</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Oferta y Onboarding" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Oferta y Onboarding" data-q="2026-Q1" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1766" target="_blank" rel="noopener">FPR-1766</a></td>
               <td>Netflix</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no" data-track="Experiencia Login">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1867" target="_blank" rel="noopener">FPR-1867</a></td>
               <td>[Experiencia login]  -  XP en no clientes</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Login</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Plataforma Core" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Plataforma Core" data-q="2026-Q1" data-carry="no" data-track="Deco Autoinstalable">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1758" target="_blank" rel="noopener">FPR-1758</a></td>
               <td>[GEONOSIS] /device: Registrado y Deco Autoinstalable</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Deco Autoinstalable</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Plataforma Core" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Plataforma Core" data-q="2026-Q2" data-carry="no" data-track="Deco Autoinstalable">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1909" target="_blank" rel="noopener">FPR-1909</a></td>
               <td>[Deco Autoinstalable]  -   Apificación /device: Deco Autoinstalable</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Deco Autoinstalable</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Plataforma Core" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Plataforma Core" data-q="2026-Q2" data-carry="no" data-track="Apificación FLOW ↔ Provisión">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1910" target="_blank" rel="noopener">FPR-1910</a></td>
               <td>[Apificación FLOW &lt;&gt; Provisión]  -   Reminders</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Apificación FLOW ↔ Provisión</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Plataforma Core" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.1 Parque" data-eq="Plataforma Core" data-q="2026-Q2" data-carry="no" data-track="Apificación FLOW ↔ Provisión">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1911" target="_blank" rel="noopener">FPR-1911</a></td>
               <td>[Apificación FLOW &lt;&gt; Provisión]  -   Ecosistema FAN</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Apificación FLOW ↔ Provisión</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="1.1 Parque" data-eq="Playback" data-q="2025-Q4 2026-Q1" data-carry="si">
+            <tr data-kr="1.1 Parque" data-eq="Playback" data-q="2025-Q4 2026-Q1" data-carry="si" data-track="Señales en la nube">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1611" target="_blank" rel="noopener">FPR-1611</a></td>
               <td>Evolución de Headend a la nube - estabilización + incremento de señales (condicionado)</td>
               <td>Playback</td>
+              <td style="font-size:11px">Señales en la nube</td>
               <td class="num" style="white-space:nowrap">&#x27;25 Q4 → Q1</td>
               <td class="num">1.1 Parque</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Catálogo y contenido" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Catálogo y contenido" data-q="2026-Q3" data-carry="no" data-track="Metadata y Sorprendeme">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2012" target="_blank" rel="noopener">FPR-2012</a></td>
               <td>Sorprendeme v2.1 — Experiencia conversacional mejorada</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Metadata y Sorprendeme</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Catálogo y contenido" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Catálogo y contenido" data-q="2026-Q3" data-carry="no" data-track="Nueva Arquitectura y Rediseño">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2023" target="_blank" rel="noopener">FPR-2023</a></td>
               <td>Reminders: estabilización y expansión de entry points</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Nueva Arquitectura y Rediseño</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Catálogo y contenido" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Catálogo y contenido" data-q="2026-Q3" data-carry="no" data-track="Experiencia Deportes">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2025" target="_blank" rel="noopener">FPR-2025</a></td>
               <td>XP Deportes — Adaptación de features Mundial para fútbol argentino</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Experiencia Deportes</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no" data-track="Flow en Martech">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1887" target="_blank" rel="noopener">FPR-1887</a></td>
               <td>[Flow en Martech]  -  Prendido de Journeys de Flow en Martech (registro y uso)</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Flow en Martech</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no" data-track="Experiencia Login">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1942" target="_blank" rel="noopener">FPR-1942</a></td>
               <td>[Experiencia login] - Prendido de la solución MVP para clientes con +1 Flow ID en web y stv</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Login</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Plataforma Core" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Plataforma Core" data-q="2026-Q2" data-carry="no" data-track="Apificación FLOW ↔ Provisión">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1759" target="_blank" rel="noopener">FPR-1759</a></td>
               <td>[GEONOSIS] /customer: Perfil, Nivel de uso, Preferencia de consumo</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Apificación FLOW ↔ Provisión</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q1" data-carry="no" data-track="Tendencias">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1712" target="_blank" rel="noopener">FPR-1712</a></td>
               <td>Tendencias en Mobile</td>
               <td>Playback</td>
+              <td style="font-size:11px">Tendencias</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Experiencia Mundial">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1720" target="_blank" rel="noopener">FPR-1720</a></td>
               <td>[Experiencia Mundial]  -  Analisis y desarrollo de iniciativas para experiencia Mundial</td>
               <td>Playback</td>
+              <td style="font-size:11px">Experiencia Mundial</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Experiencia Mundial">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1829" target="_blank" rel="noopener">FPR-1829</a></td>
               <td>[Experiencia Mundial]  -   Agenda Mundialista en Primeras Pantallas</td>
               <td>Playback</td>
+              <td style="font-size:11px">Experiencia Mundial</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Experiencia Mundial">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1830" target="_blank" rel="noopener">FPR-1830</a></td>
               <td>[Experiencia Mundial]  -   Resumenes de partidos</td>
               <td>Playback</td>
+              <td style="font-size:11px">Experiencia Mundial</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Experiencia Mundial">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1831" target="_blank" rel="noopener">FPR-1831</a></td>
               <td>[Experiencia Mundial]  -   Tendencias Mundialistas en primeras pantallas (STV + ATV)</td>
               <td>Playback</td>
+              <td style="font-size:11px">Experiencia Mundial</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Experiencia Mundial">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1832" target="_blank" rel="noopener">FPR-1832</a></td>
               <td>[Experiencia Mundial]  -   Agenda Mundialista en Mobile</td>
               <td>Playback</td>
+              <td style="font-size:11px">Experiencia Mundial</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Experiencia Mundial">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1833" target="_blank" rel="noopener">FPR-1833</a></td>
               <td>[Experiencia Mundial]  -   Sección Mundialista en Tendencias (Web + Mobile)</td>
               <td>Playback</td>
+              <td style="font-size:11px">Experiencia Mundial</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Experiencia Mundial">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1834" target="_blank" rel="noopener">FPR-1834</a></td>
               <td>[Experiencia Mundial]  -   Incremento de calidad (720 a 1080) en señales del Mundial</td>
               <td>Playback</td>
+              <td style="font-size:11px">Experiencia Mundial</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Experiencia Mundial">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1835" target="_blank" rel="noopener">FPR-1835</a></td>
               <td>[Experiencia Mundial]  -   Crecimiento de CDN</td>
               <td>Playback</td>
+              <td style="font-size:11px">Experiencia Mundial</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Experiencia Mundial">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1836" target="_blank" rel="noopener">FPR-1836</a></td>
               <td>[Experiencia Mundial]  -   Pruebas de DRP en señales del Mundial</td>
               <td>Playback</td>
+              <td style="font-size:11px">Experiencia Mundial</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q3" data-carry="no" data-track="Tendencias">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1844" target="_blank" rel="noopener">FPR-1844</a></td>
               <td>[Tendencias]  -   Rediseño de home Tendencias + reproducción in app (Web)</td>
               <td>Playback</td>
+              <td style="font-size:11px">Tendencias</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="1.2 Stickiness" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Tendencias">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1845" target="_blank" rel="noopener">FPR-1845</a></td>
               <td>[Tendencias]  -  Evolutivo + backlog (Mobile)</td>
               <td>Playback</td>
+              <td style="font-size:11px">Tendencias</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">1.2 Stickiness</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Catálogo y contenido" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Catálogo y contenido" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Experiencia Mundial">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1575" target="_blank" rel="noopener">FPR-1575</a></td>
               <td>[Experiencia Mundial]  -   Exposición de contenido Live en Superhero de Decos Linux</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Experiencia Mundial</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no" data-track="Observabilidad y salud decos">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1683" target="_blank" rel="noopener">FPR-1683</a></td>
               <td>POC - Incrementar la resiliencia de los decos ATV reiniciandolos silenciosamente mientras están en stand by</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Observabilidad y salud decos</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Observabilidad y salud decos">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1686" target="_blank" rel="noopener">FPR-1686</a></td>
               <td>[Observabilidad y salud decos]  -  Priorizar conexiones WiFi más estables en decos FlowBox</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Observabilidad y salud decos</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Migración a Minerva 11">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1809" target="_blank" rel="noopener">FPR-1809</a></td>
               <td>[Migración a Minerva 11]  -   Reducción de Alto Jointime en Sagemcom</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Migración a Minerva 11</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Observabilidad y salud decos">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1811" target="_blank" rel="noopener">FPR-1811</a></td>
               <td>[Observabilidad y salud decos]  -  Investigación de errores de reproducción con foco en Live TV (Linux STB)</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Observabilidad y salud decos</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no" data-track="Migración a Minerva 11">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1814" target="_blank" rel="noopener">FPR-1814</a></td>
               <td>Error s1039 en clientes M11 tras cambio de titularidad</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Migración a Minerva 11</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Observabilidad y salud decos">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1859" target="_blank" rel="noopener">FPR-1859</a></td>
               <td>[Observabilidad y salud decos]  -  Reordenamiento WiFi: Implementar en FTI de FlowBox - F4</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Observabilidad y salud decos</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Observabilidad y salud decos">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1870" target="_blank" rel="noopener">FPR-1870</a></td>
               <td>[Observabilidad y salud decos]  -  Información en real time (version sanity)</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Observabilidad y salud decos</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Observabilidad y salud decos">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1871" target="_blank" rel="noopener">FPR-1871</a></td>
               <td>[Observabilidad y salud decos]  -  Actualización asegurada (version sanity)</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Observabilidad y salud decos</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Observabilidad y salud decos">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1883" target="_blank" rel="noopener">FPR-1883</a></td>
               <td>[Observabilidad y salud decos]  -  PoC de herramientas de soporte técnico remoto ATV STB</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Observabilidad y salud decos</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Observabilidad y salud decos">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1884" target="_blank" rel="noopener">FPR-1884</a></td>
               <td>[Observabilidad y salud decos]  -  Reordenamiento WiFi: Implementar en settings de FlowBox F4</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Observabilidad y salud decos</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Migración a Minerva 11">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1923" target="_blank" rel="noopener">FPR-1923</a></td>
               <td>[Migración a Minerva 11] - Playback Errors en Sagemcom (M11)</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Migración a Minerva 11</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1924" target="_blank" rel="noopener">FPR-1924</a></td>
               <td>Acciones de mejora de STV (NO ANDROID) por impacto negativo en NPS</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Migración a Minerva 11">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1925" target="_blank" rel="noopener">FPR-1925</a></td>
               <td>[Migración a Minerva 11] - Estabilización de experiencia de playback en dispositivos Sagemcom</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Migración a Minerva 11</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q3" data-carry="no" data-track="Observabilidad y salud decos">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1993" target="_blank" rel="noopener">FPR-1993</a></td>
               <td>Mejorar errores LiveTV Linux</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Observabilidad y salud decos</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Dispositivos" data-q="2026-Q3" data-carry="no" data-track="Mejorar Performance en STVs">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2003" target="_blank" rel="noopener">FPR-2003</a></td>
               <td>Definir umbrales de STV por Modelo</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Mejorar Performance en STVs</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2026-Q1" data-carry="no" data-track="Experiencia Login">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1717" target="_blank" rel="noopener">FPR-1717</a></td>
               <td>Experiencia de Login (QR y NO clientes)</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Login</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2025-Q4 2026-Q1" data-carry="si">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2025-Q4 2026-Q1" data-carry="si" data-track="Experiencia Login">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1722" target="_blank" rel="noopener">FPR-1722</a></td>
               <td>OTP first en iOS</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Login</td>
               <td class="num" style="white-space:nowrap">&#x27;25 Q4 → Q1</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2025-Q4 2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2025-Q4 2026-Q1 2026-Q2" data-carry="si" data-track="Experiencia Login">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1723" target="_blank" rel="noopener">FPR-1723</a></td>
               <td>[Experiencia de login] - Implementar el nuevo Login de android mobile en UY y PY</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Login</td>
               <td class="num" style="white-space:nowrap">&#x27;25 Q4 → Q1 → Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2025-Q4 2026-Q1" data-carry="si">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2025-Q4 2026-Q1" data-carry="si" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1733" target="_blank" rel="noopener">FPR-1733</a></td>
               <td>Migración de geo/country a la nube</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">&#x27;25 Q4 → Q1</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2026-Q1" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1734" target="_blank" rel="noopener">FPR-1734</a></td>
               <td>Relevamiento de Json vitales en el inicio de la app</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1894" target="_blank" rel="noopener">FPR-1894</a></td>
               <td>Refactor: protected route - WEB y STV (20%)</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1895" target="_blank" rel="noopener">FPR-1895</a></td>
               <td>Refactor: Router mobile - Android</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no" data-track="Experiencia Gestión de Cuenta">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1896" target="_blank" rel="noopener">FPR-1896</a></td>
               <td>[Experiencia gestión de cuenta]  -   Refactor de suscripcionesiOS</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Gestión de Cuenta</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no" data-track="Experiencia Gestión de Cuenta">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1920" target="_blank" rel="noopener">FPR-1920</a></td>
               <td>[Experiencia gestión de cuenta] - Prevencion de fraude en suscripciones</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Gestión de Cuenta</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Chromecast">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1839" target="_blank" rel="noopener">FPR-1839</a></td>
               <td>[Chromecast]  -   Mejorar la experiencia de los senders (iOS)</td>
               <td>Playback</td>
+              <td style="font-size:11px">Chromecast</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Chromecast">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1840" target="_blank" rel="noopener">FPR-1840</a></td>
               <td>[Chromecast]  -   Actualización de plugin de Youbora (fase 2)</td>
               <td>Playback</td>
+              <td style="font-size:11px">Chromecast</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Chromecast">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1841" target="_blank" rel="noopener">FPR-1841</a></td>
               <td>[Chromecast]  -   Agregar metricas de Loggly y Metrics, y optimizar las actuales (Aumentar y mejorar la observabilidad) (fase 2)</td>
               <td>Playback</td>
+              <td style="font-size:11px">Chromecast</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Multicast ABR">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1842" target="_blank" rel="noopener">FPR-1842</a></td>
               <td>[Multicast ABR]  -   Homologación de solución de Transcaster (ATV STB) - Parte 1</td>
               <td>Playback</td>
+              <td style="font-size:11px">Multicast ABR</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Multicast ABR">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1843" target="_blank" rel="noopener">FPR-1843</a></td>
               <td>[Multicast ABR]  -   Seguimiento de de la integración de la nanoCDN en APK ATV (ATV STB)</td>
               <td>Playback</td>
+              <td style="font-size:11px">Multicast ABR</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Mitigación de fallas">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1929" target="_blank" rel="noopener">FPR-1929</a></td>
               <td>[iOS] Optimización de Reproducción: Mitigación de Errores Críticos del Player (Top 3)</td>
               <td>Playback</td>
+              <td style="font-size:11px">Mitigación de fallas</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.1 Detractores NPS" data-eq="Playback" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.1 Detractores NPS" data-eq="Playback" data-q="2026-Q3" data-carry="no" data-track="Chromecast">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1944" target="_blank" rel="noopener">FPR-1944</a></td>
               <td>[Chromecast]  -   Mejorar la experiencia de los senders (Android) (fase 2)</td>
               <td>Playback</td>
+              <td style="font-size:11px">Chromecast</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.1 Detractores NPS</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no" data-track="Nueva Arquitectura y Rediseño">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1725" target="_blank" rel="noopener">FPR-1725</a></td>
               <td>[Rediseño arquitectura + Home TV] - Reveal empleados</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Nueva Arquitectura y Rediseño</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no" data-track="Nueva Arquitectura y Rediseño">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1747" target="_blank" rel="noopener">FPR-1747</a></td>
               <td>[Nueva home] - v0 Hello world</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Nueva Arquitectura y Rediseño</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no" data-track="Nueva Arquitectura y Rediseño">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1748" target="_blank" rel="noopener">FPR-1748</a></td>
               <td>[Nueva home] - v0.1</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Nueva Arquitectura y Rediseño</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no" data-track="Nueva Arquitectura y Rediseño">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1749" target="_blank" rel="noopener">FPR-1749</a></td>
               <td>[Nueva home] - v0.2</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Nueva Arquitectura y Rediseño</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no" data-track="Nueva Arquitectura y Rediseño">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1750" target="_blank" rel="noopener">FPR-1750</a></td>
               <td>[Nueva home] - v0.3</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Nueva Arquitectura y Rediseño</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no" data-track="Nueva Arquitectura y Rediseño">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1751" target="_blank" rel="noopener">FPR-1751</a></td>
               <td>[Nueva home] - v0.4</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Nueva Arquitectura y Rediseño</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1" data-carry="no" data-track="Nueva Arquitectura y Rediseño">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1752" target="_blank" rel="noopener">FPR-1752</a></td>
               <td>[Nueva home] - v0.5</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Nueva Arquitectura y Rediseño</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Nueva Arquitectura y Rediseño">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1824" target="_blank" rel="noopener">FPR-1824</a></td>
               <td>[Nueva Arquitectura y Rediseño Flow]  -  Despliegue productivo (TV)</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Nueva Arquitectura y Rediseño</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q2" data-carry="no" data-track="Nueva Arquitectura y Rediseño">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1825" target="_blank" rel="noopener">FPR-1825</a></td>
               <td>[Nueva Arquitectura y Rediseño Flow]  -  Mejoras pre mundial + nuevos features (TV)</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Nueva Arquitectura y Rediseño</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q3" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2011" target="_blank" rel="noopener">FPR-2011</a></td>
               <td>Mejoras en backoffice: Flexibilidad de configuración de contenido</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q3" data-carry="no" data-track="Mejorar Performance en STVs">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2019" target="_blank" rel="noopener">FPR-2019</a></td>
               <td>Performance Smart TV Android/no Android — Implementación de Métricas</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Mejorar Performance en STVs</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Catálogo y contenido" data-q="2026-Q3" data-carry="no" data-track="Mejorar Performance en STVs">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2020" target="_blank" rel="noopener">FPR-2020</a></td>
               <td>Performance Smart TV Android — Implementación Compose</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Mejorar Performance en STVs</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Dispositivos" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Dispositivos" data-q="2026-Q3" data-carry="no" data-track="Roku">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2005" target="_blank" rel="noopener">FPR-2005</a></td>
               <td>Corregir Subtítulos Live TV en Roku</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Roku</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Host" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Host" data-q="2026-Q3" data-carry="no" data-track="Mejorar Performance en STVs">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1975" target="_blank" rel="noopener">FPR-1975</a></td>
               <td>[Encuesta CES] Implementación de encuesta CES en Android TV OTT y STB</td>
               <td>Host</td>
+              <td style="font-size:11px">Mejorar Performance en STVs</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no" data-track="Experiencia Login">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1862" target="_blank" rel="noopener">FPR-1862</a></td>
               <td>[Experiencia login]  -  Login por OTP como principal (Android)</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Login</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no" data-track="Experiencia Gestión de Cuenta">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1864" target="_blank" rel="noopener">FPR-1864</a></td>
               <td>[Experiencia gestión de cuenta]  -  Rediseño de mi cuenta Web</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Gestión de Cuenta</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no" data-track="Experiencia Login">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1866" target="_blank" rel="noopener">FPR-1866</a></td>
               <td>[Experiencia login]  -   Habilitar sesión de login sin expiración en IOS, Android</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Login</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no" data-track="Experiencia Gestión de Cuenta">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1899" target="_blank" rel="noopener">FPR-1899</a></td>
               <td>[Experiencia gestión de cuenta]  -  Vista de landings (suscripciones)</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Gestión de Cuenta</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no" data-track="Experiencia Gestión de Cuenta">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1901" target="_blank" rel="noopener">FPR-1901</a></td>
               <td>[Experiencia gestión de cuenta]  -  Pomocionar Netflix en Flow Full (suscripciones)</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Gestión de Cuenta</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no" data-track="Experiencia Gestión de Cuenta">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1902" target="_blank" rel="noopener">FPR-1902</a></td>
               <td>[Experiencia gestión de cuenta]  -  Mejorar la Experiencia en Fx1D (suscripciones)</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Gestión de Cuenta</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no" data-track="Experiencia Gestión de Cuenta">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1935" target="_blank" rel="noopener">FPR-1935</a></td>
               <td>[Experiencia gestión de cuenta] - Rediseño de mi cuenta en TVs</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Gestión de Cuenta</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Experiencia Gestión de Cuenta">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1941" target="_blank" rel="noopener">FPR-1941</a></td>
               <td>CLONE - [Experiencia gestión de cuenta]  -  Recarga de sesión ante la compra de un Pack (ATV+STVM11)</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Gestión de Cuenta</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Oferta y Onboarding" data-q="2026-Q3" data-carry="no" data-track="Experiencia Gestión de Cuenta">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2008" target="_blank" rel="noopener">FPR-2008</a></td>
               <td>CMS (administrador de contenidos) para suscripciones BE</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Gestión de Cuenta</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Experiencia Reproducción">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1892" target="_blank" rel="noopener">FPR-1892</a></td>
               <td>[Experiencia de reproducción]  -  Actualización de IU Android APP</td>
               <td>Playback</td>
+              <td style="font-size:11px">Experiencia Reproducción</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Playback" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Playback" data-q="2026-Q3" data-carry="no" data-track="Experiencia Reproducción">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2041" target="_blank" rel="noopener">FPR-2041</a></td>
               <td>Exploración de canales en vivo</td>
               <td>Playback</td>
+              <td style="font-size:11px">Experiencia Reproducción</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Playback" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Playback" data-q="2026-Q3" data-carry="no" data-track="Experiencia Reproducción">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2043" target="_blank" rel="noopener">FPR-2043</a></td>
               <td>[Chromecast] — Mejorar la experiencia de los senders (iOS)</td>
               <td>Playback</td>
+              <td style="font-size:11px">Experiencia Reproducción</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.2 T2B CES" data-eq="Playback" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.2 T2B CES" data-eq="Playback" data-q="2026-Q1" data-carry="no" data-track="Chromecast">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-428" target="_blank" rel="noopener">FPR-428</a></td>
               <td>Mejora de calidad de reproducción Chromecast</td>
               <td>Playback</td>
+              <td style="font-size:11px">Chromecast</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.2 T2B CES</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Catálogo y contenido" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Catálogo y contenido" data-q="2026-Q3" data-carry="no" data-track="Migración a Minerva 11">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2017" target="_blank" rel="noopener">FPR-2017</a></td>
               <td>Apagado de M10 - Features catalogo</td>
               <td>Catálogo y contenido</td>
+              <td style="font-size:11px">Migración a Minerva 11</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no" data-track="Observabilidad y salud decos">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1764" target="_blank" rel="noopener">FPR-1764</a></td>
               <td>Medir el flujo de booteo de los decos Linux (Metrics)</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Observabilidad y salud decos</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Mitigación de fallas">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1881" target="_blank" rel="noopener">FPR-1881</a></td>
               <td>[Mitigación de fallas y reducción de tiempos de afectación]  -  Soporte técnico remoto: Acciones Masivas (ATV STB)</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Mitigación de fallas</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Dispositivos" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Dispositivos" data-q="2026-Q3" data-carry="no" data-track="Migración a Minerva 11">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1989" target="_blank" rel="noopener">FPR-1989</a></td>
               <td>Apagado M10 - Sagemcom BOOT Url</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Migración a Minerva 11</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Host" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Host" data-q="2026-Q1" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1703" target="_blank" rel="noopener">FPR-1703</a></td>
               <td>Analisis para el refactor Splash en Android y ATV</td>
               <td>Host</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Host" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="2.3 MTTR" data-eq="Host" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1816" target="_blank" rel="noopener">FPR-1816</a></td>
               <td>Refactor Splash en Android - ATV</td>
               <td>Host</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Host" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Host" data-q="2026-Q3" data-carry="no" data-track="Migración a Minerva 11">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1968" target="_blank" rel="noopener">FPR-1968</a></td>
               <td>[Limpieza M10] Eliminación de dependencias de M10 para el apagado correcto de la plataforma</td>
               <td>Host</td>
+              <td style="font-size:11px">Migración a Minerva 11</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Oferta y Onboarding" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Oferta y Onboarding" data-q="2026-Q3" data-carry="no" data-track="Mitigación de fallas">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1973" target="_blank" rel="noopener">FPR-1973</a></td>
               <td>Ampliación de cobertura de monitoreo en Watchdog de login (analisis)</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Mitigación de fallas</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Oferta y Onboarding" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Oferta y Onboarding" data-q="2026-Q3" data-carry="no" data-track="Experiencia Login">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1978" target="_blank" rel="noopener">FPR-1978</a></td>
               <td>Tablero unificado de métricas de login por método</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Experiencia Login</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1" data-carry="no" data-track="Migración a Minerva 11">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1754" target="_blank" rel="noopener">FPR-1754</a></td>
               <td>[M11] Ejecución Olas de Migración</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Migración a Minerva 11</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1" data-carry="no" data-track="Migración a Minerva 11">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1755" target="_blank" rel="noopener">FPR-1755</a></td>
               <td>[M11] Check point Fin Enero / Plan Final</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Migración a Minerva 11</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1" data-carry="no" data-track="Migración a Minerva 11">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1756" target="_blank" rel="noopener">FPR-1756</a></td>
               <td>[M11] Disaster Recovery / Chaos</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Migración a Minerva 11</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1" data-carry="no" data-track="Apificación FLOW ↔ Provisión">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1761" target="_blank" rel="noopener">FPR-1761</a></td>
               <td>[PANTORA] Flujo de RECÁLCULO</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Apificación FLOW ↔ Provisión</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1" data-carry="no" data-track="Apificación FLOW ↔ Provisión">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1762" target="_blank" rel="noopener">FPR-1762</a></td>
               <td>[PANTORA] Flujo de MORA</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Apificación FLOW ↔ Provisión</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1" data-carry="no" data-track="Apificación FLOW ↔ Provisión">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1763" target="_blank" rel="noopener">FPR-1763</a></td>
               <td>[PANTORA] Estandarización/Limpieza de paquetes y servicios entre BSS/Provi y Flow</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Apificación FLOW ↔ Provisión</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q2" data-carry="no" data-track="Migración a Minerva 11">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1904" target="_blank" rel="noopener">FPR-1904</a></td>
               <td>[Migración a Minerva 11]  -  Finalización de Migración clientes finales.</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Migración a Minerva 11</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q2" data-carry="no" data-track="Apificación FLOW ↔ Provisión">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1907" target="_blank" rel="noopener">FPR-1907</a></td>
               <td>[Apificación FLOW &lt;&gt; Provisión]  -   Flujo de RECÁLCULOImplementación</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Apificación FLOW ↔ Provisión</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q2" data-carry="no" data-track="Apificación FLOW ↔ Provisión">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1908" target="_blank" rel="noopener">FPR-1908</a></td>
               <td>[Apificación FLOW &lt;&gt; Provisión]  -   Full M11Apagado M10</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Apificación FLOW ↔ Provisión</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Señales en la nube">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1946" target="_blank" rel="noopener">FPR-1946</a></td>
               <td>Cloud Head End - Elemetal AWS - Evolución de señales a la nube</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Señales en la nube</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Migración a Minerva 11">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1947" target="_blank" rel="noopener">FPR-1947</a></td>
               <td>[M11] Estabilidad y Robustez para WC</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Migración a Minerva 11</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Mitigación de fallas">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1948" target="_blank" rel="noopener">FPR-1948</a></td>
               <td>M11 - Carga y Load Testing en la Plataforma</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Mitigación de fallas</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Mitigación de fallas">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1949" target="_blank" rel="noopener">FPR-1949</a></td>
               <td>M11 - Ejercicios de Chaos</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Mitigación de fallas</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q3" data-carry="no" data-track="Migración a Minerva 11">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2046" target="_blank" rel="noopener">FPR-2046</a></td>
               <td>[Apagado M10] — Migración de grabaciones a Full M11</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Migración a Minerva 11</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q3" data-carry="no" data-track="Mitigación de fallas">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2049" target="_blank" rel="noopener">FPR-2049</a></td>
               <td>[Cloud Head End] — Puesta en producción con observabilidad</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Mitigación de fallas</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q3" data-carry="no" data-track="Apificación FLOW ↔ Provisión">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2053" target="_blank" rel="noopener">FPR-2053</a></td>
               <td>[Geonosis] — Adecuación Ini 650 — Eventos / Kafka Consumer</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Apificación FLOW ↔ Provisión</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Plataforma Core" data-q="2026-Q3" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2055" target="_blank" rel="noopener">FPR-2055</a></td>
               <td>[Infra Post-M11] — Envío de imágenes mediante CDN propia</td>
               <td>Plataforma Core</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Mitigación de fallas">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1846" target="_blank" rel="noopener">FPR-1846</a></td>
               <td>[Mitigacion de Fallas y Reduccion de Tiempos de afectacion​]  -   Acciones de Mitigacion de FallasATEMEPreventivas + Mitigaciones</td>
               <td>Playback</td>
+              <td style="font-size:11px">Mitigación de fallas</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Mitigación de fallas">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1847" target="_blank" rel="noopener">FPR-1847</a></td>
               <td>[Mitigacion de Fallas y Reduccion de Tiempos de afectacion​]  -   Health check ATEME (Clusters, CDN, QWILT)</td>
               <td>Playback</td>
+              <td style="font-size:11px">Mitigación de fallas</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Mitigación de fallas">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1848" target="_blank" rel="noopener">FPR-1848</a></td>
               <td>[Mitigacion de Fallas y Reduccion de Tiempos de afectacion​]  -   Acciones de mejora de Observabilidad de DVCAS + Acciones de Normalización</td>
               <td>Playback</td>
+              <td style="font-size:11px">Mitigación de fallas</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="2.3 MTTR" data-eq="Playback" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="2.3 MTTR" data-eq="Playback" data-q="2026-Q2" data-carry="no" data-track="Señales en la nube">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1851" target="_blank" rel="noopener">FPR-1851</a></td>
               <td>[Señales en la nube]  -   Migración de 10 señales</td>
               <td>Playback</td>
+              <td style="font-size:11px">Señales en la nube</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">2.3 MTTR</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no" data-track="Observabilidad y salud decos">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1693" target="_blank" rel="noopener">FPR-1693</a></td>
               <td>Mejoras en interoperatividad Decos Flow y ACS</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Observabilidad y salud decos</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no" data-track="Observabilidad y salud decos">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1699" target="_blank" rel="noopener">FPR-1699</a></td>
               <td>Preparar Decos  para la migración de ACS</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Observabilidad y salud decos</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no" data-track="Migración a Minerva 11">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1767" target="_blank" rel="noopener">FPR-1767</a></td>
               <td>Estabilización y tareas relacionadas a migración M11 de STB Linux</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Migración a Minerva 11</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q1" data-carry="no" data-track="Recupero de equipos">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1771" target="_blank" rel="noopener">FPR-1771</a></td>
               <td>[Recupero de equipos] - PoC Recupero de equipos</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Recupero de equipos</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Homologación y Actualización">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1801" target="_blank" rel="noopener">FPR-1801</a></td>
               <td>[Homologaciones dispositivos]  -  Homologar la aplicación de STV en LG para Paraguay</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Homologación y Actualización</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Homologación y Actualización">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1802" target="_blank" rel="noopener">FPR-1802</a></td>
               <td>[Homologaciones dispositivos]  -  Homologar la aplicación de STV en Vidaa para Paraguay</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Homologación y Actualización</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Homologación y Actualización">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1803" target="_blank" rel="noopener">FPR-1803</a></td>
               <td>[Homologaciones dispositivos]  -  Homologar la aplicación de STV en TitanOS para Paraguay</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Homologación y Actualización</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Homologación y Actualización">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1804" target="_blank" rel="noopener">FPR-1804</a></td>
               <td>[Homologaciones dispositivos]  -  Certificación HBO Max en FlowBox</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Homologación y Actualización</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Observabilidad y salud decos">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1813" target="_blank" rel="noopener">FPR-1813</a></td>
               <td>[Observabilidad y salud decos]  -   Observabilidad de reinicios por threshold de memoria en Linux STB (Acciones Preventivas STB)</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Observabilidad y salud decos</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1856" target="_blank" rel="noopener">FPR-1856</a></td>
               <td>Rebranding STV</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Homologación y Actualización">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1858" target="_blank" rel="noopener">FPR-1858</a></td>
               <td>[Homologaciones dispositivos]  -  Homologar nueva configuración de FlowBox Z4</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Homologación y Actualización</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Homologación y Actualización">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1860" target="_blank" rel="noopener">FPR-1860</a></td>
               <td>[Homologaciones dispositivos]  -  Integrar Control Remoto OMNI V4 con decos ATV legados</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Homologación y Actualización</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="BAU" data-eq="Dispositivos" data-q="2026-Q2" data-carry="no" data-track="Recupero de equipos">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1921" target="_blank" rel="noopener">FPR-1921</a></td>
               <td>[Recupero de equipos] - Bloqueo Manual Periódico</td>
               <td>Dispositivos</td>
+              <td style="font-size:11px">Recupero de equipos</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Host" data-q="2025-Q4 2026-Q1" data-carry="si">
+            <tr data-kr="BAU" data-eq="Host" data-q="2025-Q4 2026-Q1" data-carry="si" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1633" target="_blank" rel="noopener">FPR-1633</a></td>
               <td>Mejora de feedback en Smart TV mediante integración de encuestas con QR</td>
               <td>Host</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">&#x27;25 Q4 → Q1</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Host" data-q="2025-Q4 2026-Q1" data-carry="si">
+            <tr data-kr="BAU" data-eq="Host" data-q="2025-Q4 2026-Q1" data-carry="si" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1638" target="_blank" rel="noopener">FPR-1638</a></td>
               <td>Migración de datos al nuevo Remote Config (RC) por streams para Host</td>
               <td>Host</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">&#x27;25 Q4 → Q1</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Host" data-q="2025-Q4 2026-Q1" data-carry="si">
+            <tr data-kr="BAU" data-eq="Host" data-q="2025-Q4 2026-Q1" data-carry="si" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1640" target="_blank" rel="noopener">FPR-1640</a></td>
               <td>Fortalecimiento de calidad y seguridad de código (Unit Tests, SonarQube, Fortify) - WEB - STV - iOS</td>
               <td>Host</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">&#x27;25 Q4 → Q1</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Host" data-q="2026-Q1 2026-Q2" data-carry="si">
+            <tr data-kr="BAU" data-eq="Host" data-q="2026-Q1 2026-Q2" data-carry="si" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1706" target="_blank" rel="noopener">FPR-1706</a></td>
               <td>Actualización de dependencias externas</td>
               <td>Host</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q1 → Q2</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Host" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="BAU" data-eq="Host" data-q="2026-Q2" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1817" target="_blank" rel="noopener">FPR-1817</a></td>
               <td>Fortalecimiento de calidad y seguridad de código (Unit Tests, SonarQube, Fortify) - Android</td>
               <td>Host</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Host" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="BAU" data-eq="Host" data-q="2026-Q2" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1818" target="_blank" rel="noopener">FPR-1818</a></td>
               <td>Fortalecimiento de calidad y seguridad de código (Unit Tests, SonarQube, Fortify) - ATV</td>
               <td>Host</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Host" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="BAU" data-eq="Host" data-q="2026-Q2" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1928" target="_blank" rel="noopener">FPR-1928</a></td>
               <td>Migración a Swift 6.2</td>
               <td>Host</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Host" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="BAU" data-eq="Host" data-q="2026-Q3" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1969" target="_blank" rel="noopener">FPR-1969</a></td>
               <td>[Design System] Evolución del Design System: nomenclatura, componentes TV y exploración Compose Multiplatform</td>
               <td>Host</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Oferta y Onboarding" data-q="2025-Q4 2026-Q1" data-carry="si">
+            <tr data-kr="BAU" data-eq="Oferta y Onboarding" data-q="2025-Q4 2026-Q1" data-carry="si" data-track="Apificación FLOW ↔ Provisión">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1738" target="_blank" rel="noopener">FPR-1738</a></td>
               <td>Metrics en ProvisionCheck</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Apificación FLOW ↔ Provisión</td>
               <td class="num" style="white-space:nowrap">&#x27;25 Q4 → Q1</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Oferta y Onboarding" data-q="2025-Q4 2026-Q1" data-carry="si">
+            <tr data-kr="BAU" data-eq="Oferta y Onboarding" data-q="2025-Q4 2026-Q1" data-carry="si" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1740" target="_blank" rel="noopener">FPR-1740</a></td>
               <td>Nuevo token para FAAS (datapower)</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">&#x27;25 Q4 → Q1</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Oferta y Onboarding" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="BAU" data-eq="Oferta y Onboarding" data-q="2026-Q1" data-carry="no" data-track="Homologación y Actualización">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1774" target="_blank" rel="noopener">FPR-1774</a></td>
               <td>[Aumentar el límite de dispositivos OTTs y estacionarios] Actualizar el límite: Clientes nuevos, clientes Existentes en M10 y en M11 los con recalculo por gestión</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Homologación y Actualización</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="BAU" data-eq="Oferta y Onboarding" data-q="2026-Q2" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1912" target="_blank" rel="noopener">FPR-1912</a></td>
               <td>Refactor: Rediseño DIP OTT (Disney) - Parte OYO</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P3</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Oferta y Onboarding" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="BAU" data-eq="Oferta y Onboarding" data-q="2026-Q3" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1986" target="_blank" rel="noopener">FPR-1986</a></td>
               <td>Refactor del protected route - WEB y STV (70%)</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Oferta y Onboarding" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="BAU" data-eq="Oferta y Onboarding" data-q="2026-Q3" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1988" target="_blank" rel="noopener">FPR-1988</a></td>
               <td>Refactor de BE de Gestión</td>
               <td>Oferta y Onboarding</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Playback" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="BAU" data-eq="Playback" data-q="2026-Q1" data-carry="no" data-track="Señales en la nube">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1714" target="_blank" rel="noopener">FPR-1714</a></td>
               <td>Ampliación de CDN por Catec + Mundial + TMA</td>
               <td>Playback</td>
+              <td style="font-size:11px">Señales en la nube</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Playback" data-q="2026-Q1" data-carry="no">
+            <tr data-kr="BAU" data-eq="Playback" data-q="2026-Q1" data-carry="no" data-track="Multicast ABR">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1715" target="_blank" rel="noopener">FPR-1715</a></td>
               <td>Integrar la NanoCDN de Multicast en ATV STB</td>
               <td>Playback</td>
+              <td style="font-size:11px">Multicast ABR</td>
               <td class="num" style="white-space:nowrap">Q1</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-red">P0</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Playback" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="BAU" data-eq="Playback" data-q="2026-Q3" data-carry="no" data-track="Robustecer Gestión del Contenido">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2036" target="_blank" rel="noopener">FPR-2036</a></td>
               <td>[MAM] — Desarrollos con VCN para mejora de ingesta y mantenimiento</td>
               <td>Playback</td>
+              <td style="font-size:11px">Robustecer Gestión del Contenido</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="Playback" data-q="2026-Q3" data-carry="no">
+            <tr data-kr="BAU" data-eq="Playback" data-q="2026-Q3" data-carry="no" data-track="Robustecer Gestión del Contenido">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-2037" target="_blank" rel="noopener">FPR-2037</a></td>
               <td>[Transcoder] — Upgrade por obsolescencia y fin de soporte - Homologación</td>
               <td>Playback</td>
+              <td style="font-size:11px">Robustecer Gestión del Contenido</td>
               <td class="num" style="white-space:nowrap">Q3</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-amber">P1</span></td>
             </tr>
-            <tr data-kr="BAU" data-eq="UX Team" data-q="2026-Q2" data-carry="no">
+            <tr data-kr="BAU" data-eq="UX Team" data-q="2026-Q2" data-carry="no" data-track="Sin bloque / BAU">
               <td><a class="jira-link" href="https://tecocloud.atlassian.net/browse/FPR-1882" target="_blank" rel="noopener">FPR-1882</a></td>
               <td>Design System: Sentar las bases del sistema</td>
               <td>UX Team</td>
+              <td style="font-size:11px">Sin bloque / BAU</td>
               <td class="num" style="white-space:nowrap">Q2</td>
               <td class="num">BAU</td>
               <td class="num"><span class="pill pill-gray">P2</span></td>
@@ -2612,12 +2784,14 @@
     function filtrar(){
       var kr=document.getElementById('f-kr').value,
           eq=document.getElementById('f-eq').value,
+          tk=document.getElementById('f-track').value,
           q=document.getElementById('f-q').value,
           ca=document.getElementById('f-carry').value;
       var filas=document.querySelectorAll('#tabla-ini tbody tr'), n=0;
       filas.forEach(function(tr){
         var ok = (!kr || tr.dataset.kr===kr)
               && (!eq || tr.dataset.eq===eq)
+              && (!tk || tr.dataset.track===tk)
               && (!q  || tr.dataset.q.indexOf(q)>-1)
               && (!ca || tr.dataset.carry===ca);
         tr.style.display = ok ? '' : 'none';
@@ -2627,12 +2801,24 @@
       document.getElementById('vacio').style.display = n===0 ? 'block' : 'none';
     }
     function limpiar(){
-      ['f-kr','f-eq','f-q','f-carry'].forEach(function(id){document.getElementById(id).value='';});
+      ['f-kr','f-eq','f-track','f-q','f-carry'].forEach(function(id){document.getElementById(id).value='';});
       filtrar();
     }
     function verKR(kr){
       limpiar();
       document.getElementById('f-kr').value=kr;
+      filtrar();
+      document.getElementById('detalle').scrollIntoView({behavior:'smooth'});
+    }
+    function verTrack(tk){
+      limpiar();
+      document.getElementById('f-track').value=tk;
+      filtrar();
+      document.getElementById('detalle').scrollIntoView({behavior:'smooth'});
+    }
+    function verEquipo(eq){
+      limpiar();
+      document.getElementById('f-eq').value=eq;
       filtrar();
       document.getElementById('detalle').scrollIntoView({behavior:'smooth'});
     }
